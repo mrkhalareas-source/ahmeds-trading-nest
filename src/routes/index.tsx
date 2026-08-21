@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
+  AlertCircle,
   ArrowUpRight,
   BarChart3,
   CandlestickChart,
+  Clock,
   Facebook,
   Instagram,
   Layers,
@@ -11,9 +13,15 @@ import {
   Lock,
   Menu,
   Music2,
+  Scale,
   Send,
   ShieldCheck,
+  Target,
+  TrendingDown,
+  Trophy,
+  Wallet,
   Youtube,
+  Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroChart from "@/assets/hero-chart.jpg";
@@ -132,6 +140,67 @@ const SOCIALS = [
   { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/tradewithahmedofficial" },
   { name: "TikTok", icon: Music2, href: "https://www.tiktok.com/@tradewithahmed.official" },
   { name: "All Links Hub", icon: Link2, href: "https://linktr.ee/tradewithahmed.official" },
+];
+
+const CHALLENGE_OPTIONS = [
+  {
+    name: "Option 1 - The Standard Challenge",
+    account: "$5,000 Account",
+    fee: "Rs. 1,500",
+    profitTarget: "16% ($800)",
+    dailyDrawdown: "2% ($100)",
+    maxLoss: "8% ($400)",
+    reward: "Rs. 1,500 Fee Refund + $500 Live Account Challenge",
+    cta: "Join Option 1",
+  },
+  {
+    name: "Option 2 - The Flexible Challenge",
+    account: "$5,000 Account",
+    fee: "Rs. 2,500",
+    profitTarget: "12% ($600)",
+    dailyDrawdown: "4% ($200)",
+    maxLoss: "10% ($500)",
+    reward: "Rs. 2,500 Fee Refund + $500 Live Account Challenge",
+    cta: "Join Option 2",
+  },
+  {
+    name: "Option 3 - The Ultra-Easy Challenge",
+    account: "$5,000 Account",
+    fee: "Rs. 3,500",
+    profitTarget: "9% ($450)",
+    dailyDrawdown: "6% ($300)",
+    maxLoss: "12% ($600)",
+    reward: "Rs. 3,500 Fee Refund + $500 Live Account Challenge",
+    cta: "Join Option 3",
+  },
+];
+
+const CHALLENGE_RULES = [
+  {
+    icon: Wallet,
+    title: "Account Setup",
+    text: "Create $5,000 Demo Account on Doo Prime, Vantage, or XM under Admin monitoring.",
+  },
+  {
+    icon: Clock,
+    title: "Minimum Trade Time",
+    text: "Trades must stay open for at least 5 MINUTES (Scalping strictly disallowed).",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Trade Management",
+    text: "No multi-positions allowed. Strictly 1 trade open at a time.",
+  },
+  {
+    icon: Scale,
+    title: "Lot Management",
+    text: "Lot size fixed at start must remain consistent.",
+  },
+  {
+    icon: Zap,
+    title: "News Trading",
+    text: "News trading is ALLOWED.",
+  },
 ];
 
 export const Route = createFileRoute("/")({
