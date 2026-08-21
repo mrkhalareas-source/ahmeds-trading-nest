@@ -624,17 +624,8 @@ function Index() {
             </div>
 
             <div className="mt-8 rounded-xl border border-primary/25 bg-primary/5 p-5 text-center">
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                After making the payment, send the transaction receipt screenshot to Admin via{" "}
-                <a
-                  href={WHATSAPP_CHANNEL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-primary underline-offset-2 hover:underline"
-                >
-                  WhatsApp
-                </a>{" "}
-                or{" "}
+              <p className="whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
+                After making the payment, send the transaction receipt screenshot to Admin{"\n"}via{"\u00a0\u00a0"}
                 <a
                   href={TELEGRAM_MAIN}
                   target="_blank"
