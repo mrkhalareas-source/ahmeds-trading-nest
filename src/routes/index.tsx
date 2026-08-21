@@ -569,6 +569,86 @@ function Index() {
           </div>
         </section>
 
+        {/* Payment Methods */}
+        <section id="payment" className="relative overflow-hidden">
+          <div className="grid-lines absolute inset-0 opacity-40" aria-hidden="true" />
+          <div className="relative mx-auto max-w-7xl px-5 py-20">
+            <div className="mx-auto max-w-3xl text-center">
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">
+                Payments
+              </span>
+              <h2 className="mt-3 text-3xl font-bold sm:text-4xl lg:text-5xl">
+                PAYMENT <span className="text-gradient-gold">DETAILS</span>
+              </h2>
+              <p className="mt-3 text-lg font-semibold text-primary sm:text-xl">
+                Easy • Secure • Trusted
+              </p>
+            </div>
+
+            <div className="mt-12 grid gap-6 md:grid-cols-2">
+              {PAYMENT_METHODS.map((method) => (
+                <article key={method.title} className="panel flex flex-col p-6">
+                  <div className="flex items-center gap-3">
+                    <span className="grid h-10 w-10 place-items-center rounded-lg bg-accent/12 text-accent">
+                      <method.icon className="h-5 w-5" />
+                    </span>
+                    <h3 className="font-display text-lg font-bold">{method.title}</h3>
+                  </div>
+                  <div className="mt-5 space-y-3 text-sm">
+                    <div className="flex flex-col justify-between gap-1 border-b border-border pb-3 sm:flex-row sm:gap-4">
+                      <span className="text-muted-foreground">{method.accountLabel}</span>
+                      <span className="font-semibold text-foreground">{method.account}</span>
+                    </div>
+                    <div className="flex flex-col justify-between gap-1 border-b border-border pb-3 sm:flex-row sm:gap-4">
+                      <span className="text-muted-foreground">{method.valueLabel}</span>
+                      <span className="break-all font-mono font-medium text-primary">
+                        {method.value}
+                      </span>
+                    </div>
+                  </div>
+                  <CopyButton value={method.value} label={method.copyLabel} className="mt-6 w-full" />
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-10 flex flex-wrap justify-center gap-3">
+              {PAYMENT_BADGES.map((badge) => (
+                <div
+                  key={badge.label}
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-2 text-sm font-medium text-muted-foreground"
+                >
+                  <badge.icon className="h-4 w-4 text-accent" />
+                  {badge.label}
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 rounded-xl border border-primary/25 bg-primary/5 p-5 text-center">
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                After making the payment, send the transaction receipt screenshot to Admin via{" "}
+                <a
+                  href={WHATSAPP_CHANNEL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-primary underline-offset-2 hover:underline"
+                >
+                  WhatsApp
+                </a>{" "}
+                or{" "}
+                <a
+                  href={TELEGRAM_MAIN}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-primary underline-offset-2 hover:underline"
+                >
+                  Telegram
+                </a>
+                .
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Market focus */}
         <section id="strategy" className="mx-auto max-w-7xl px-5 py-20">
           <SectionHeading
