@@ -415,7 +415,7 @@ function Index() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild variant="cta" size="xl">
                   <a href={TELEGRAM_MAIN} target="_blank" rel="noopener noreferrer">
-                    <Send /> Join Free Telegram
+                    <Send /> Join Telegram
                   </a>
                 </Button>
                 <Button asChild variant="goldOutline" size="xl">
