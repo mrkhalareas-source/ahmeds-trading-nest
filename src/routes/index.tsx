@@ -209,6 +209,85 @@ const CHALLENGE_RULES = [
   },
 ];
 
+const PAYMENT_METHODS = [
+  {
+    icon: Landmark,
+    title: "Bank Alfalah",
+    accountLabel: "Account Title",
+    account: "Ahmed Salleem",
+    valueLabel: "IBAN / Account Number",
+    value: "PK56ALFH0100001004895493",
+    copyLabel: "Copy IBAN",
+  },
+  {
+    icon: Smartphone,
+    title: "EasyPaisa & JazzCash",
+    accountLabel: "Account Title",
+    account: "Ahmed Saleem",
+    valueLabel: "Mobile Number",
+    value: "03315119895",
+    copyLabel: "Copy Number",
+  },
+  {
+    icon: Wallet,
+    title: "Binance Pay / ID",
+    accountLabel: "Account Name",
+    account: "Ahmed Saleem 90",
+    valueLabel: "Binance ID",
+    value: "787567422",
+    copyLabel: "Copy Binance ID",
+  },
+  {
+    icon: Bitcoin,
+    title: "Binance Wallet (TRC20)",
+    accountLabel: "Network",
+    account: "TRC20",
+    valueLabel: "Wallet Address",
+    value: "TExU5qQhTh1BKi5p7NwLvq1dRbPNBAjviS",
+    copyLabel: "Copy Address",
+  },
+];
+
+const PAYMENT_BADGES = [
+  { icon: ShieldCheck, label: "100% Secure" },
+  { icon: CheckCircle, label: "Trusted & Verified" },
+  { icon: Zap, label: "Fast & Reliable" },
+];
+
+function CopyButton({
+  value,
+  label,
+  className,
+}: {
+  value: string;
+  label: string;
+  className?: string;
+}) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Fallback: silently ignore if clipboard is unavailable
+    }
+  };
+
+  return (
+    <Button
+      type="button"
+      variant="surface"
+      onClick={handleCopy}
+      className={className}
+    >
+      {copied ? <Check className="h-4 w-4 text-accent" /> : <Copy className="h-4 w-4" />}
+      {copied ? "Copied" : label}
+    </Button>
+  );
+}
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
