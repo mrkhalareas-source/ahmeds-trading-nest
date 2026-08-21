@@ -21,7 +21,6 @@ import {
   Scale,
   Send,
   ShieldCheck,
-  Smartphone,
   Target,
   TrendingDown,
   Trophy,
@@ -212,15 +211,6 @@ const PAYMENT_METHODS = [
     valueLabel: "IBAN / Account Number",
     value: "PK56ALFH0100001004895493",
     copyLabel: "Copy IBAN",
-  },
-  {
-    icon: Smartphone,
-    title: "EasyPaisa & JazzCash",
-    accountLabel: "Account Title",
-    account: "Ahmed Saleem",
-    valueLabel: "Mobile Number",
-    value: "03315119895",
-    copyLabel: "Copy Number",
   },
   {
     icon: Wallet,
