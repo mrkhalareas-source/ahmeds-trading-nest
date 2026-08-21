@@ -82,12 +82,6 @@ const BROKERS = [
     href: "https://my.dooprime.com/links/go/73751",
   },
   {
-    name: "DERIV",
-    features: ["Synthetic Indices", "24/7 Trading", "Low Minimum Deposit"],
-    cta: "Trade on Deriv",
-    href: "https://affs.click/RXAwT",
-  },
-  {
     name: "BINANCE",
     features: ["Global Crypto Liquidity", "Spot & Futures Trading", "Top Security"],
     cta: "Trade on Binance",
