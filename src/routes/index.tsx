@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
+  AlertCircle,
   ArrowUpRight,
   BarChart3,
   CandlestickChart,
+  Clock,
   Facebook,
   Instagram,
   Layers,
@@ -11,9 +13,15 @@ import {
   Lock,
   Menu,
   Music2,
+  Scale,
   Send,
   ShieldCheck,
+  Target,
+  TrendingDown,
+  Trophy,
+  Wallet,
   Youtube,
+  Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroChart from "@/assets/hero-chart.jpg";
@@ -132,6 +140,67 @@ const SOCIALS = [
   { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/tradewithahmedofficial" },
   { name: "TikTok", icon: Music2, href: "https://www.tiktok.com/@tradewithahmed.official" },
   { name: "All Links Hub", icon: Link2, href: "https://linktr.ee/tradewithahmed.official" },
+];
+
+const CHALLENGE_OPTIONS = [
+  {
+    name: "Option 1 - The Standard Challenge",
+    account: "$5,000 Account",
+    fee: "Rs. 1,500",
+    profitTarget: "16% ($800)",
+    dailyDrawdown: "2% ($100)",
+    maxLoss: "8% ($400)",
+    reward: "Rs. 1,500 Fee Refund + $500 Live Account Challenge",
+    cta: "Join Option 1",
+  },
+  {
+    name: "Option 2 - The Flexible Challenge",
+    account: "$5,000 Account",
+    fee: "Rs. 2,500",
+    profitTarget: "12% ($600)",
+    dailyDrawdown: "4% ($200)",
+    maxLoss: "10% ($500)",
+    reward: "Rs. 2,500 Fee Refund + $500 Live Account Challenge",
+    cta: "Join Option 2",
+  },
+  {
+    name: "Option 3 - The Ultra-Easy Challenge",
+    account: "$5,000 Account",
+    fee: "Rs. 3,500",
+    profitTarget: "9% ($450)",
+    dailyDrawdown: "6% ($300)",
+    maxLoss: "12% ($600)",
+    reward: "Rs. 3,500 Fee Refund + $500 Live Account Challenge",
+    cta: "Join Option 3",
+  },
+];
+
+const CHALLENGE_RULES = [
+  {
+    icon: Wallet,
+    title: "Account Setup",
+    text: "Create $5,000 Demo Account on Doo Prime, Vantage, or XM under Admin monitoring.",
+  },
+  {
+    icon: Clock,
+    title: "Minimum Trade Time",
+    text: "Trades must stay open for at least 5 MINUTES (Scalping strictly disallowed).",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Trade Management",
+    text: "No multi-positions allowed. Strictly 1 trade open at a time.",
+  },
+  {
+    icon: Scale,
+    title: "Lot Management",
+    text: "Lot size fixed at start must remain consistent.",
+  },
+  {
+    icon: Zap,
+    title: "News Trading",
+    text: "News trading is ALLOWED.",
+  },
 ];
 
 export const Route = createFileRoute("/")({
@@ -298,6 +367,119 @@ function Index() {
                 alt="XAUUSD dark trading chart showing liquidity pools, order blocks and fair value gaps"
                 className="w-full rounded-lg"
               />
+            </div>
+          </div>
+        </section>
+
+        {/* Trading Challenge */}
+        <section id="challenge" className="relative overflow-hidden">
+          <div className="grid-lines absolute inset-0 opacity-40" aria-hidden="true" />
+          <div className="relative mx-auto max-w-7xl px-5 py-20">
+            <div className="mx-auto max-w-3xl text-center">
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">
+                $500 Live Account
+              </span>
+              <h2 className="mt-3 text-3xl font-bold sm:text-4xl lg:text-5xl">
+                OFFICIAL <span className="text-gradient-gold">TRADING CHALLENGE</span>
+              </h2>
+              <p className="mt-3 text-lg font-semibold text-primary sm:text-xl">
+                $500 LIVE ACCOUNT CHALLENGE
+              </p>
+              <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+                Designed like a Funded Account model to build professional trading discipline.
+                Choose one of the three options below:
+              </p>
+            </div>
+
+            <div className="mt-12 grid gap-6 lg:grid-cols-3">
+              {CHALLENGE_OPTIONS.map((opt) => (
+                <article
+                  key={opt.name}
+                  className="panel relative flex flex-col overflow-hidden p-6"
+                >
+                  <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent via-primary to-accent" />
+                  <div className="flex items-center justify-between gap-3">
+                    <h3 className="font-display text-lg font-bold">{opt.name}</h3>
+                    <span className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
+                      {opt.account}
+                    </span>
+                  </div>
+                  <p className="mt-4 text-2xl font-bold text-foreground">
+                    {opt.fee}{" "}
+                    <span className="text-xs font-normal text-muted-foreground">
+                      (100% Refundable upon passing)
+                    </span>
+                  </p>
+                  <ul className="mt-5 flex-1 space-y-3 text-sm text-muted-foreground">
+                    <li className="flex items-start gap-2">
+                      <Target className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                      <span>
+                        <strong className="text-foreground">Profit Target:</strong>{" "}
+                        {opt.profitTarget}
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <TrendingDown className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
+                      <span>
+                        <strong className="text-foreground">Daily Drawdown:</strong>{" "}
+                        {opt.dailyDrawdown}
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span>
+                        <strong className="text-foreground">Max Overall Loss Limit:</strong>{" "}
+                        {opt.maxLoss}
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Trophy className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span>
+                        <strong className="text-foreground">Reward:</strong> {opt.reward}
+                      </span>
+                    </li>
+                  </ul>
+                  <Button asChild variant="cta" className="mt-6 w-full">
+                    <a
+                      href="https://t.me/tradingchallengeoftradewithahmed"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {opt.cta} <ArrowUpRight />
+                    </a>
+                  </Button>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-16">
+              <h3 className="text-center text-xl font-bold sm:text-2xl">
+                Challenge <span className="text-gradient-gold">Rules</span>
+              </h3>
+              <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+                {CHALLENGE_RULES.map((rule) => (
+                  <article key={rule.title} className="panel p-5 text-center">
+                    <span className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-accent/12 text-accent">
+                      <rule.icon className="h-5 w-5" />
+                    </span>
+                    <h4 className="mt-4 text-sm font-semibold">{rule.title}</h4>
+                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                      {rule.text}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-10 rounded-xl border border-accent/25 bg-accent/5 p-5">
+              <div className="flex items-start gap-3">
+                <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  <span className="font-semibold text-foreground">Note:</span> You must pass the
+                  specific option selected. Option changes are not allowed once registered. Pass
+                  the challenge, get 100% fee refunded + $500 Live Account reward!
+                </p>
+              </div>
             </div>
           </div>
         </section>
