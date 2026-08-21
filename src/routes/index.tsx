@@ -35,7 +35,6 @@ const WHATSAPP_CHANNEL = "https://www.whatsapp.com/channel/0029VbAzGiwATRSpsC9ZL
 const NAV = [
   { label: "Home", href: "#home" },
   { label: "Mentorship", href: "#mentorship" },
-  { label: "Strategy", href: "#strategy" },
   { label: "Brokers", href: "#brokers" },
   { label: "Communities", href: "#communities" },
   { label: "Contact", href: "#contact" },
