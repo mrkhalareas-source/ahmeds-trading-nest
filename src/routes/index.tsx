@@ -185,7 +185,7 @@ const CHALLENGE_RULES = [
   {
     icon: Wallet,
     title: "Account Setup",
-    text: "Create $5,000 Demo Account on Doo Prime, Vantage, or XM under Admin monitoring.",
+    text: "Create $5,000 Demo Account on Doo Prime, Vantage, or XM under our Admin links.",
   },
   {
     icon: Clock,
