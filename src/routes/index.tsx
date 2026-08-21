@@ -5,7 +5,6 @@ import {
   ArrowUpRight,
   BarChart3,
   Bitcoin,
-  CandlestickChart,
   Check,
   CheckCircle,
   Clock,
@@ -13,7 +12,6 @@ import {
   Facebook,
   Instagram,
   Landmark,
-  Layers,
   Link2,
   Lock,
   Menu,
@@ -41,24 +39,6 @@ const NAV = [
   { label: "Brokers", href: "#brokers" },
   { label: "Communities", href: "#communities" },
   { label: "Contact", href: "#contact" },
-];
-
-const FOCUS = [
-  {
-    icon: CandlestickChart,
-    title: "Gold (XAUUSD) Mastery",
-    text: "Deep dive into intraday market structure, session liquidity, and execution models for XAUUSD.",
-  },
-  {
-    icon: Layers,
-    title: "Smart Money Concepts (SMC) & ICT",
-    text: "Identify bank orders, Fair Value Gaps (FVG), order blocks, and liquidity sweeps.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Institutional Risk Management",
-    text: "Master position sizing, drawdown control, and disciplined equity growth strategies.",
-  },
 ];
 
 const BROKERS = [
@@ -621,26 +601,6 @@ function Index() {
                 .
               </p>
             </div>
-          </div>
-        </section>
-
-        {/* Market focus */}
-        <section id="strategy" className="mx-auto max-w-7xl px-5 py-20">
-          <SectionHeading
-            eyebrow="Market Focus"
-            title="What You Will Learn"
-            text="A structured curriculum built around institutional order flow and disciplined execution."
-          />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {FOCUS.map((f) => (
-              <article key={f.title} className="panel p-6">
-                <span className="grid h-11 w-11 place-items-center rounded-lg bg-primary/12 text-primary">
-                  <f.icon className="h-5 w-5" />
-                </span>
-                <h3 className="mt-5 text-lg font-semibold">{f.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.text}</p>
-              </article>
-            ))}
           </div>
         </section>
 
