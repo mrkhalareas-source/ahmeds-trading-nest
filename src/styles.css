@@ -45,6 +45,8 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-surface: var(--surface);
+  --color-cyan: var(--cyan);
+  --color-cyan-foreground: var(--cyan-foreground);
   --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
 }
@@ -69,6 +71,9 @@
   /* green #00C805 */
   --accent: oklch(0.71 0.235 143);
   --accent-foreground: oklch(0.16 0.02 150);
+  /* cyan #22D3EE */
+  --cyan: oklch(0.8 0.13 205);
+  --cyan-foreground: oklch(0.18 0.03 220);
   --destructive: oklch(0.62 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
   --border: oklch(1 0 0 / 10%);
@@ -148,3 +153,59 @@
   background-size: 56px 56px;
 }
 
+
+@utility glass-card {
+  background: linear-gradient(
+    145deg,
+    color-mix(in oklab, var(--color-card) 82%, transparent),
+    color-mix(in oklab, var(--color-background) 70%, transparent)
+  );
+  border: 1px solid color-mix(in oklab, var(--color-border) 100%, transparent);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(14px) saturate(130%);
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease;
+  &:hover {
+    border-color: color-mix(in oklab, var(--color-cyan) 40%, transparent);
+    transform: translateY(-2px);
+  }
+}
+
+@utility ambient-overlay {
+  background-image:
+    radial-gradient(
+      900px 600px at 8% 4%,
+      color-mix(in oklab, var(--primary) 10%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      900px 600px at 92% 30%,
+      color-mix(in oklab, var(--cyan) 9%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      900px 700px at 50% 100%,
+      color-mix(in oklab, var(--accent) 8%, transparent),
+      transparent 70%
+    );
+}
+
+@utility watermark-float {
+  animation: watermark-drift 26s ease-in-out infinite alternate;
+}
+
+@keyframes watermark-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(0, -26px, 0) scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .watermark-float {
+    animation: none;
+  }
+}
