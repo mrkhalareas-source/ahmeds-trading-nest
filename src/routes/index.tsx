@@ -1,32 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import {
-  AlertCircle,
-  ArrowUpRight,
-  BarChart3,
-  Bitcoin,
-  Check,
-  CheckCircle,
-  Clock,
-  Copy,
-  Facebook,
-  Instagram,
-  Landmark,
-  Link2,
-  Lock,
-  Menu,
-  Music2,
-  Scale,
-  Send,
-  ShieldCheck,
-  Target,
-  TrendingDown,
-  Trophy,
-  Wallet,
-  Youtube,
-  Zap,
-} from "lucide-react";
+import { CircleAlert as AlertCircle, ArrowUpRight, ChartBar as BarChart3, Bitcoin, Check, CircleCheck as CheckCircle, Clock, Copy, Facebook, Instagram, Landmark, Link2, Menu, Music2, Scale, Send, ShieldCheck, Target, TrendingDown, Trophy, Wallet, Youtube, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { TradingWatermark } from "@/components/TradingWatermark";
+import { WeeklyReport } from "@/components/WeeklyReport";
+import { CourseSection } from "@/components/CourseSection";
+import { SuccessStories } from "@/components/SuccessStories";
 import heroChart from "@/assets/hero-chart.jpg";
 
 const TELEGRAM_MAIN = "https://t.me/tradewithahmedofficial";
@@ -34,9 +13,11 @@ const WHATSAPP_CHANNEL = "https://www.whatsapp.com/channel/0029VbAzGiwATRSpsC9ZL
 
 const NAV = [
   { label: "Home", href: "#home" },
-  { label: "Mentorship", href: "#mentorship" },
+  { label: "Mentorship", href: "#course" },
+  { label: "Strategy", href: "#weekly-report" },
   { label: "Brokers", href: "#brokers" },
   { label: "Communities", href: "#communities" },
+  { label: "Reviews", href: "#reviews" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -58,6 +39,12 @@ const BROKERS = [
     features: ["Multi-Asset Coverage", "Institutional Liquidity", "Low Slippage"],
     cta: "Trade on Doo Prime",
     href: "https://my.dooprime.com/links/go/73751",
+  },
+  {
+    name: "DERIV",
+    features: ["Synthetic Indices", "24/7 Trading", "Low Minimum Deposit"],
+    cta: "Trade on Deriv",
+    href: "https://affs.click/RXAwT",
   },
   {
     name: "BINANCE",
@@ -297,7 +284,8 @@ function Index() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background">
+      <TradingWatermark />
       <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-xl">
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5">
           <a href="#home" className="flex items-center gap-2">
@@ -603,38 +591,14 @@ function Index() {
           </div>
         </section>
 
-        {/* Mentorship CTA band */}
-        <section id="mentorship" className="mx-auto max-w-7xl px-5 pb-20">
-          <div className="panel hero-glow p-8 text-center sm:p-12">
-            <h2 className="text-2xl font-bold sm:text-3xl">
-              Premium Forex & Gold Trading Mentorship
-            </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-              Structured mentorship, live market breakdowns and a trader community built around
-              institutional concepts — not indicators.
-            </p>
-            <div className="mt-7 flex flex-wrap justify-center gap-3">
-              <Button asChild variant="cta" size="lg">
-                <a
-                  href="https://t.me/+GHPraAZEjz8zYjk0"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Lock /> Mentorship Group
-                </a>
-              </Button>
-              <Button asChild variant="gold" size="lg">
-                <a
-                  href="https://t.me/+1RLONurHJM82MzVk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  VIP Signals
-                </a>
-              </Button>
-            </div>
-          </div>
-        </section>
+        {/* Weekly Market Report */}
+        <WeeklyReport />
+
+        {/* Institutional Trading Course */}
+        <CourseSection />
+
+        {/* Student Success Stories */}
+        <SuccessStories />
 
         {/* Brokers */}
         <section id="brokers" className="mx-auto max-w-7xl px-5 py-20">
