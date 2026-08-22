@@ -71,6 +71,9 @@
   /* green #00C805 */
   --accent: oklch(0.71 0.235 143);
   --accent-foreground: oklch(0.16 0.02 150);
+  /* cyan #22D3EE */
+  --cyan: oklch(0.8 0.13 205);
+  --cyan-foreground: oklch(0.18 0.03 220);
   --destructive: oklch(0.62 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
   --border: oklch(1 0 0 / 10%);
