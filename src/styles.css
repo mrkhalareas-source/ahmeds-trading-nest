@@ -153,3 +153,59 @@
   background-size: 56px 56px;
 }
 
+
+@utility glass-card {
+  background: linear-gradient(
+    145deg,
+    color-mix(in oklab, var(--color-card) 82%, transparent),
+    color-mix(in oklab, var(--color-background) 70%, transparent)
+  );
+  border: 1px solid color-mix(in oklab, var(--color-border) 100%, transparent);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(14px) saturate(130%);
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease;
+  &:hover {
+    border-color: color-mix(in oklab, var(--color-cyan) 40%, transparent);
+    transform: translateY(-2px);
+  }
+}
+
+@utility ambient-overlay {
+  background-image:
+    radial-gradient(
+      900px 600px at 8% 4%,
+      color-mix(in oklab, var(--primary) 10%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      900px 600px at 92% 30%,
+      color-mix(in oklab, var(--cyan) 9%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      900px 700px at 50% 100%,
+      color-mix(in oklab, var(--accent) 8%, transparent),
+      transparent 70%
+    );
+}
+
+@utility watermark-float {
+  animation: watermark-drift 26s ease-in-out infinite alternate;
+}
+
+@keyframes watermark-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(0, -26px, 0) scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .watermark-float {
+    animation: none;
+  }
+}
