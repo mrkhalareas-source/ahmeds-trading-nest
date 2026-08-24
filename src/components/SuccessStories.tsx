@@ -65,6 +65,7 @@ function toEmbedUrl(url: string) {
 
 export function SuccessStories() {
   const [reviews, setReviews] = useState<Review[]>(INITIAL_REVIEWS);
+  const [tab, setTab] = useState("written");
   const [open, setOpen] = useState(false);
   const [rating, setRating] = useState(5);
   const [filePreview, setFilePreview] = useState<{ url: string; name: string } | null>(null);
@@ -80,23 +81,28 @@ export function SuccessStories() {
     const name = String(data.get("name") ?? "").trim();
     const text = String(data.get("text") ?? "").trim();
     const videoUrl = String(data.get("videoUrl") ?? "").trim();
-    if (!name || !text) return;
+    if (!name || !text) {
+      toast.error("Please add your name and review text.");
+      return;
+    }
 
-    setReviews((prev) => [
-      {
-        name,
-        text,
-        rating,
-        ...(videoUrl ? { videoUrl } : {}),
-        ...(filePreview ? { proofUrl: filePreview.url, proofName: filePreview.name } : {}),
-      },
-      ...prev,
-    ]);
+    const newReview: Review = {
+      name,
+      text,
+      rating,
+      ...(videoUrl ? { videoUrl } : {}),
+      ...(filePreview ? { proofUrl: filePreview.url, proofName: filePreview.name } : {}),
+    };
+
+    setReviews((prev) => [newReview, ...prev]);
+    setTab(newReview.videoUrl ? "video" : newReview.proofUrl ? "proof" : "written");
     form.reset();
     setRating(5);
     setFilePreview(null);
     setOpen(false);
+    toast.success("Review submitted successfully!");
   };
+
 
   return (
     <section id="reviews" className="relative">
