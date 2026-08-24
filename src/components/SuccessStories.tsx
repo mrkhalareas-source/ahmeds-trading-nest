@@ -119,7 +119,7 @@ export function SuccessStories() {
           </p>
         </div>
 
-        <Tabs defaultValue="written" className="mt-12">
+        <Tabs value={tab} onValueChange={setTab} className="mt-12">
           <TabsList className="mx-auto flex w-full max-w-xl">
             <TabsTrigger value="written" className="flex-1">
               <Quote className="mr-2 h-4 w-4" /> Written
