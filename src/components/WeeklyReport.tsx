@@ -1,98 +1,203 @@
-import { ArrowUpRight, CalendarClock, Compass, LineChart, Send } from "lucide-react";
+import { CalendarDays, Send, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const TELEGRAM_UPDATES = "https://t.me/updatesoftradewithahmedofficial";
+const TELEGRAM_MAIN = "https://t.me/tradewithahmedofficial";
 
-const NEWS_EVENTS = [
-  { tag: "CPI", text: "US Inflation print — high volatility on Gold within the first 15 minutes." },
-  { tag: "NFP", text: "Non-Farm Payrolls — expect liquidity sweeps before the true weekly direction." },
-  { tag: "FOMC", text: "Rate decision & press conference — the week's primary XAUUSD driver." },
-];
+export type Trade = { pair: string; side: "BUY" | "SELL"; pips: number };
 
-const ZONES = [
-  { label: "Key Resistance", value: "Weekly supply / previous week high liquidity" },
-  { label: "Equilibrium", value: "50% of the weekly dealing range — decision zone" },
-  { label: "Key Support", value: "Weekly demand / previous week low liquidity" },
-];
+export type WeeklyResults = {
+  brand: string;
+  dateRange: string;
+  trades: number;
+  wins: number;
+  losses: number;
+  totalProfitPips: number;
+  totalLossPips: number;
+  winningTrades: Trade[];
+  losingTrades: Trade[];
+};
 
-export function WeeklyReport() {
+const DEFAULT_RESULTS: WeeklyResults = {
+  brand: "TRADE WITH AHMED - TRADEWITHAHMED.SITE",
+  dateRange: "17 - 21 AUG 2026",
+  trades: 25,
+  wins: 21,
+  losses: 4,
+  totalProfitPips: 4100,
+  totalLossPips: 350,
+  winningTrades: [
+    { pair: "XAUUSD", side: "BUY", pips: 100 },
+    { pair: "XAUUSD", side: "SELL", pips: 180 },
+    { pair: "XAUUSD", side: "BUY", pips: 600 },
+    { pair: "XAUUSD", side: "SELL", pips: 150 },
+    { pair: "XAUUSD", side: "BUY", pips: 220 },
+    { pair: "XAUUSD", side: "SELL", pips: 90 },
+    { pair: "XAUUSD", side: "BUY", pips: 310 },
+    { pair: "XAUUSD", side: "SELL", pips: 260 },
+    { pair: "XAUUSD", side: "BUY", pips: 140 },
+    { pair: "XAUUSD", side: "SELL", pips: 200 },
+    { pair: "XAUUSD", side: "BUY", pips: 175 },
+    { pair: "XAUUSD", side: "SELL", pips: 120 },
+    { pair: "XAUUSD", side: "BUY", pips: 240 },
+    { pair: "XAUUSD", side: "SELL", pips: 95 },
+    { pair: "XAUUSD", side: "BUY", pips: 330 },
+    { pair: "XAUUSD", side: "SELL", pips: 160 },
+    { pair: "XAUUSD", side: "BUY", pips: 110 },
+    { pair: "XAUUSD", side: "SELL", pips: 210 },
+    { pair: "XAUUSD", side: "BUY", pips: 185 },
+    { pair: "XAUUSD", side: "SELL", pips: 130 },
+    { pair: "XAUUSD", side: "BUY", pips: 94 },
+  ],
+  losingTrades: [
+    { pair: "XAUUSD", side: "BUY", pips: -50 },
+    { pair: "XAUUSD", side: "SELL", pips: -130 },
+    { pair: "XAUUSD", side: "BUY", pips: -80 },
+    { pair: "XAUUSD", side: "SELL", pips: -90 },
+  ],
+};
+
+const fmt = (n: number) => `${n > 0 ? "+" : n < 0 ? "-" : ""}${Math.abs(n).toLocaleString()}`;
+
+export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyResults }) {
+  const net = results.totalProfitPips - results.totalLossPips;
+  const winRate = results.trades ? Math.round((results.wins / results.trades) * 100) : 0;
+
+  const metrics = [
+    { label: "Trades", value: String(results.trades), tone: "text-foreground" },
+    { label: "Wins", value: String(results.wins), tone: "text-accent" },
+    { label: "Losses", value: String(results.losses), tone: "text-destructive" },
+    { label: "Win Rate", value: `${winRate}%`, tone: "text-primary" },
+  ];
+
+  const breakdown = [
+    { label: "Total Profit", value: `${fmt(results.totalProfitPips)} PIPS`, tone: "text-accent" },
+    { label: "Total Loss", value: `${fmt(-results.totalLossPips)} PIPS`, tone: "text-destructive" },
+    { label: "Net Gain", value: `${fmt(net)} PIPS`, tone: "text-primary" },
+  ];
+
   return (
     <section id="weekly-report" className="relative">
-      <div className="mx-auto max-w-7xl px-5 py-20">
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan">
-            Weekly Desk Note
-          </span>
-          <h2 className="mt-3 text-3xl font-bold sm:text-4xl lg:text-5xl">
-            WEEKLY MARKET <span className="text-gradient-gold">REPORT &amp; BIAS</span>
-          </h2>
-          <p className="mt-4 text-muted-foreground">
-            Every Sunday we publish the institutional roadmap for the week ahead — directional
-            bias, high-impact news and the levels that actually matter.
-          </p>
-        </div>
-
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          <article className="glass-card p-6">
-            <span className="grid h-10 w-10 place-items-center rounded-lg bg-primary/12 text-primary">
-              <LineChart className="h-5 w-5" />
+      <div className="mx-auto max-w-5xl px-5 py-20">
+        <div className="overflow-hidden rounded-2xl border border-accent/30 bg-card/70 shadow-[0_0_60px_-30px_var(--accent)] backdrop-blur-xl">
+          {/* Top bar */}
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/70 bg-background/60 px-5 py-4">
+            <span className="text-xs font-semibold tracking-[0.16em] text-muted-foreground sm:text-sm">
+              {results.brand}
             </span>
-            <h3 className="mt-4 font-display text-lg font-bold">Weekly Gold (XAUUSD) Outlook</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Higher-timeframe market structure read on Gold: weekly bias, the dealing range in
-              play, and the draw on liquidity we expect price to target through the week.
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/45 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+              <CalendarDays className="h-3.5 w-3.5" /> {results.dateRange}
+            </span>
+          </div>
+
+          {/* Header */}
+          <div className="px-5 py-10 text-center sm:px-8">
+            <span className="inline-flex rounded-full border border-accent/50 bg-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-accent">
+              Official Weekly Report
+            </span>
+            <h2 className="mt-5 text-3xl font-bold sm:text-4xl lg:text-5xl">
+              PREMIUM GROUP <span className="text-gradient-gold">RESULTS</span>
+            </h2>
+            <p className="mt-2 text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground">
+              Total Net Profit
             </p>
-            <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                Weekly & daily bias with invalidation levels
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                London & New York kill zone game plan
-              </li>
-            </ul>
-          </article>
+            <p className="mt-4 font-display text-5xl font-extrabold text-primary drop-shadow-[0_0_28px_color-mix(in_oklab,var(--primary)_45%,transparent)] sm:text-6xl">
+              {fmt(net)} PIPS
+            </p>
+          </div>
 
-          <article className="glass-card p-6">
-            <span className="grid h-10 w-10 place-items-center rounded-lg bg-cyan/12 text-cyan">
-              <CalendarClock className="h-5 w-5" />
-            </span>
-            <h3 className="mt-4 font-display text-lg font-bold">High-Impact News Events</h3>
-            <ul className="mt-4 space-y-3">
-              {NEWS_EVENTS.map((e) => (
-                <li key={e.tag} className="rounded-lg border border-border bg-card/50 p-3">
-                  <span className="inline-flex rounded-full border border-cyan/30 bg-cyan/10 px-2.5 py-0.5 text-xs font-semibold text-cyan">
-                    {e.tag}
-                  </span>
-                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{e.text}</p>
-                </li>
-              ))}
-            </ul>
-          </article>
+          {/* Metrics */}
+          <div className="grid grid-cols-2 gap-4 px-5 pb-6 sm:px-8 lg:grid-cols-4">
+            {metrics.map((m) => (
+              <div
+                key={m.label}
+                className="rounded-xl border border-border bg-background/50 p-4 text-center"
+              >
+                <p className={`font-display text-2xl font-bold ${m.tone}`}>{m.value}</p>
+                <p className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">
+                  {m.label}
+                </p>
+              </div>
+            ))}
+          </div>
 
-          <article className="glass-card p-6">
-            <span className="grid h-10 w-10 place-items-center rounded-lg bg-accent/12 text-accent">
-              <Compass className="h-5 w-5" />
-            </span>
-            <h3 className="mt-4 font-display text-lg font-bold">Key Support / Resistance Zones</h3>
-            <ul className="mt-4 space-y-3 text-sm">
-              {ZONES.map((z) => (
-                <li key={z.label} className="border-b border-border pb-3 last:border-0 last:pb-0">
-                  <p className="font-semibold text-foreground">{z.label}</p>
-                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{z.value}</p>
-                </li>
-              ))}
-            </ul>
-          </article>
-        </div>
+          {/* Pips breakdown */}
+          <div className="grid gap-4 px-5 pb-8 sm:px-8 lg:grid-cols-3">
+            {breakdown.map((b) => (
+              <div
+                key={b.label}
+                className="rounded-xl border border-border bg-background/50 p-5 text-center"
+              >
+                <p className="text-xs uppercase tracking-widest text-muted-foreground">{b.label}</p>
+                <p className={`mt-2 font-display text-2xl font-bold ${b.tone}`}>{b.value}</p>
+              </div>
+            ))}
+          </div>
 
-        <div className="mt-10 flex justify-center">
-          <Button asChild variant="cta" size="xl">
-            <a href={TELEGRAM_UPDATES} target="_blank" rel="noopener noreferrer">
-              <Send /> Get Full Weekly Bias on Telegram <ArrowUpRight />
-            </a>
-          </Button>
+          {/* Winning trades */}
+          <div className="px-5 pb-6 sm:px-8">
+            <div className="rounded-xl border border-accent/35 bg-accent/5 p-5">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-accent">
+                  ✔ Winning Trades ({results.winningTrades.length} Trades)
+                </h3>
+                <span className="rounded-full border border-accent/45 bg-accent/10 px-3 py-1 text-sm font-bold text-accent">
+                  {fmt(results.totalProfitPips)} PIPS
+                </span>
+              </div>
+              <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+                {results.winningTrades.map((t, i) => (
+                  <li
+                    key={`win-${i}`}
+                    className="flex items-center justify-between rounded-lg border border-border bg-background/50 px-3 py-2 text-sm"
+                  >
+                    <span className="text-muted-foreground">
+                      ✓ {t.pair} {t.side}
+                    </span>
+                    <span className="font-semibold text-accent">{fmt(t.pips)}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Losing trades */}
+          <div className="px-5 pb-8 sm:px-8">
+            <div className="rounded-xl border border-destructive/40 bg-destructive/5 p-5">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-destructive">
+                  <XCircle className="inline h-4 w-4 -mt-0.5" /> Losing Trades ({results.losingTrades.length} Trades)
+                </h3>
+                <span className="rounded-full border border-destructive/45 bg-destructive/10 px-3 py-1 text-sm font-bold text-destructive">
+                  {fmt(-results.totalLossPips)} PIPS
+                </span>
+              </div>
+              <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+                {results.losingTrades.map((t, i) => (
+                  <li
+                    key={`loss-${i}`}
+                    className="flex items-center justify-between rounded-lg border border-border bg-background/50 px-3 py-2 text-sm"
+                  >
+                    <span className="text-muted-foreground">
+                      <XCircle className="inline h-3.5 w-3.5 text-destructive" /> {t.pair} {t.side}
+                    </span>
+                    <span className="font-semibold text-destructive">{fmt(t.pips)}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="border-t border-border/70 bg-background/60 px-5 py-8 text-center sm:px-8">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+              The market rewards discipline, not emotions.
+            </p>
+            <Button asChild variant="cta" size="xl" className="mt-6 w-full">
+              <a href={TELEGRAM_MAIN} target="_blank" rel="noopener noreferrer">
+                <Send /> JOIN TELEGRAM: @tradewithahmedofficial
+              </a>
+            </Button>
+          </div>
         </div>
       </div>
     </section>
