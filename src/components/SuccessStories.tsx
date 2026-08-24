@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { Image as ImageIcon, PlayCircle, Quote, Star, Upload, X } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
