@@ -1,4 +1,4 @@
-import { Send } from "lucide-react";
+import { CalendarDays, Send, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const TELEGRAM_MAIN = "https://t.me/tradewithahmedofficial";
@@ -85,7 +85,7 @@ export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyRe
               {results.brand}
             </span>
             <span className="rounded-full border border-primary/45 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-              📅 {results.dateRange}
+              <CalendarDays className="h-3.5 w-3.5" /> {results.dateRange}
             </span>
           </div>
 
@@ -165,7 +165,7 @@ export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyRe
             <div className="rounded-xl border border-destructive/40 bg-destructive/5 p-5">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <h3 className="text-sm font-bold uppercase tracking-wider text-destructive">
-                  ❌ Losing Trades ({results.losingTrades.length} Trades)
+                  <XCircle className="inline h-4 w-4 -mt-0.5" /> Losing Trades ({results.losingTrades.length} Trades)
                 </h3>
                 <span className="rounded-full border border-destructive/45 bg-destructive/10 px-3 py-1 text-sm font-bold text-destructive">
                   {fmt(-results.totalLossPips)} PIPS
@@ -178,7 +178,7 @@ export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyRe
                     className="flex items-center justify-between rounded-lg border border-border bg-background/50 px-3 py-2 text-sm"
                   >
                     <span className="text-muted-foreground">
-                      ❌ {t.pair} {t.side}
+                      <XCircle className="inline h-3.5 w-3.5 text-destructive" /> {t.pair} {t.side}
                     </span>
                     <span className="font-semibold text-destructive">{fmt(t.pips)}</span>
                   </li>
