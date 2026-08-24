@@ -84,7 +84,7 @@ export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyRe
             <span className="text-xs font-semibold tracking-[0.16em] text-muted-foreground sm:text-sm">
               {results.brand}
             </span>
-            <span className="rounded-full border border-primary/45 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/45 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
               <CalendarDays className="h-3.5 w-3.5" /> {results.dateRange}
             </span>
           </div>
