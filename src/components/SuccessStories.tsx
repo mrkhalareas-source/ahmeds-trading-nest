@@ -1,4 +1,6 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
+import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
 import { Image as ImageIcon, PlayCircle, Quote, Star, Upload, X } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -14,33 +16,20 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { supabase } from "@/integrations/supabase/client";
+import { submitReview } from "@/lib/reviews.functions";
+import { reviewsQueryOptions } from "@/lib/reviews.queries";
 
 type Review = {
+  id: string;
   name: string;
   text: string;
   rating: number;
-  videoUrl?: string;
-  proofUrl?: string;
-  proofName?: string;
+  video_url: string | null;
+  proof_url: string | null;
+  proof_name: string | null;
+  created_at: string;
 };
-
-const INITIAL_REVIEWS: Review[] = [
-  {
-    name: "Hamza R.",
-    rating: 5,
-    text: "The XAUUSD structure sessions completely changed my trading. Passed my challenge easily!",
-  },
-  {
-    name: "Ayesha K.",
-    rating: 5,
-    text: "The lifetime access for $100 is worth every single penny. Best institutional mentorship in Pakistan.",
-  },
-  {
-    name: "Bilal A.",
-    rating: 5,
-    text: "Precision liquidity sweeps and market structure rules helped me achieve consistent discipline.",
-  },
-];
 
 function Stars({ value }: { value: number }) {
   return (
@@ -64,17 +53,61 @@ function toEmbedUrl(url: string) {
 }
 
 export function SuccessStories() {
-  const [reviews, setReviews] = useState<Review[]>(INITIAL_REVIEWS);
+  const { data: fetchedReviews } = useSuspenseQuery(reviewsQueryOptions());
+  const [reviews, setReviews] = useState<Review[]>(fetchedReviews);
   const [tab, setTab] = useState("written");
   const [open, setOpen] = useState(false);
   const [rating, setRating] = useState(5);
-  const [filePreview, setFilePreview] = useState<{ url: string; name: string } | null>(null);
+  const [filePreview, setFilePreview] = useState<{ url: string; name: string; file: File } | null>(null);
   const [viewer, setViewer] = useState<{ url: string; name: string } | null>(null);
+  const queryClient = useQueryClient();
+  const submitReviewFn = useServerFn(submitReview);
 
-  const videoReviews = reviews.filter((r) => r.videoUrl);
-  const proofReviews = reviews.filter((r) => r.proofUrl);
+  useEffect(() => setReviews(fetchedReviews), [fetchedReviews]);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const createReview = useMutation({
+    mutationFn: async (values: { name: string; text: string; rating: number; videoUrl?: string; proof?: File }) => {
+      let proofPath: string | undefined;
+      let proofName: string | undefined;
+      let signedProofUrl: string | null = null;
+
+      if (values.proof) {
+        proofName = values.proof.name;
+        const extension = values.proof.name.split(".").pop()?.replace(/[^a-zA-Z0-9]/g, "") || "jpg";
+        proofPath = `${crypto.randomUUID()}.${extension}`;
+        const { error: uploadError } = await supabase.storage
+          .from("review-proofs")
+          .upload(proofPath, values.proof, { contentType: values.proof.type, upsert: false });
+        if (uploadError) throw uploadError;
+        const { data: signed, error: signedError } = await supabase.storage
+          .from("review-proofs")
+          .createSignedUrl(proofPath, 3600);
+        if (signedError) throw signedError;
+        signedProofUrl = signed.signedUrl;
+      }
+
+      const inserted = await submitReviewFn({
+        data: {
+          name: values.name,
+          text: values.text,
+          rating: values.rating,
+          ...(values.videoUrl ? { videoUrl: values.videoUrl } : {}),
+          ...(proofPath ? { proofPath, proofName } : {}),
+        },
+      });
+      return { ...inserted, proof_url: signedProofUrl };
+    },
+    onSuccess: (newInsertedReview) => {
+      setReviews((prev) => [newInsertedReview, ...prev.filter((review) => review.id !== newInsertedReview.id)]);
+      setTab(newInsertedReview.video_url ? "video" : newInsertedReview.proof_url ? "proof" : "written");
+      queryClient.invalidateQueries({ queryKey: ["reviews"] });
+    },
+  });
+
+  const videoReviews = reviews.filter((r) => r.video_url);
+  const proofReviews = reviews.filter((r) => r.proof_url);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -86,21 +119,23 @@ export function SuccessStories() {
       return;
     }
 
-    const newReview: Review = {
-      name,
-      text,
-      rating,
-      ...(videoUrl ? { videoUrl } : {}),
-      ...(filePreview ? { proofUrl: filePreview.url, proofName: filePreview.name } : {}),
-    };
-
-    setReviews((prev) => [newReview, ...prev]);
-    setTab(newReview.videoUrl ? "video" : newReview.proofUrl ? "proof" : "written");
-    form.reset();
-    setRating(5);
-    setFilePreview(null);
-    setOpen(false);
-    toast.success("Review submitted successfully!");
+    try {
+      await createReview.mutateAsync({
+        name,
+        text,
+        rating,
+        ...(videoUrl ? { videoUrl } : {}),
+        ...(filePreview ? { proof: filePreview.file } : {}),
+      });
+      form.reset();
+      setRating(5);
+      if (filePreview) URL.revokeObjectURL(filePreview.url);
+      setFilePreview(null);
+      setOpen(false);
+      toast.success("Review submitted successfully!");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Review submission failed. Please try again.");
+    }
   };
 
 
@@ -134,8 +169,8 @@ export function SuccessStories() {
 
           <TabsContent value="written" className="mt-8">
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {reviews.map((r, i) => (
-                <article key={`${r.name}-${i}`} className="glass-card flex flex-col p-6">
+              {reviews.map((r) => (
+                <article key={r.id} className="glass-card flex flex-col p-6">
                   <Quote className="h-6 w-6 text-primary/60" />
                   <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
                     &ldquo;{r.text}&rdquo;
@@ -156,11 +191,11 @@ export function SuccessStories() {
               </p>
             ) : (
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {videoReviews.map((r, i) => (
-                  <article key={`${r.name}-video-${i}`} className="glass-card overflow-hidden">
+                {videoReviews.map((r) => (
+                  <article key={`${r.id}-video`} className="glass-card overflow-hidden">
                     <div className="aspect-video w-full bg-background">
                       <iframe
-                        src={toEmbedUrl(r.videoUrl!)}
+                        src={r.video_url ? toEmbedUrl(r.video_url) : undefined}
                         title={`Video testimonial by ${r.name}`}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
                         allowFullScreen
@@ -187,22 +222,22 @@ export function SuccessStories() {
               </p>
             ) : (
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {proofReviews.map((r, i) => (
+                {proofReviews.map((r) => (
                   <button
-                    key={`${r.name}-proof-${i}`}
+                    key={`${r.id}-proof`}
                     type="button"
-                    onClick={() => setViewer({ url: r.proofUrl!, name: r.proofName ?? r.name })}
+                    onClick={() => r.proof_url && setViewer({ url: r.proof_url, name: r.proof_name ?? r.name })}
                     className="glass-card group overflow-hidden text-left"
                   >
                     <img
-                      src={r.proofUrl}
+                      src={r.proof_url ?? undefined}
                       alt={`Payout proof submitted by ${r.name}`}
                       className="h-44 w-full object-cover transition-transform group-hover:scale-105"
                     />
                     <div className="p-4">
                       <span className="text-sm font-semibold">{r.name}</span>
                       <p className="mt-1 truncate text-xs text-muted-foreground">
-                        {r.proofName ?? "Attachment"}
+                        {r.proof_name ?? "Attachment"}
                       </p>
                     </div>
                   </button>
@@ -287,7 +322,7 @@ export function SuccessStories() {
                     onChange={(e) => {
                       const file = e.target.files?.[0];
                       setFilePreview(
-                        file ? { url: URL.createObjectURL(file), name: file.name } : null,
+                         file ? { url: URL.createObjectURL(file), name: file.name, file } : null,
                       );
                     }}
                   />
@@ -310,11 +345,11 @@ export function SuccessStories() {
                   ) : null}
                 </div>
 
-                <Button type="submit" variant="cta" className="w-full">
-                  Publish Success Story
+                <Button type="submit" variant="cta" className="w-full" disabled={createReview.isPending}>
+                  {createReview.isPending ? "Publishing..." : "Publish Success Story"}
                 </Button>
                 <p className="text-center text-xs text-muted-foreground">
-                  Submissions display on this page for your current session.
+                  Your review will appear publicly as soon as it is submitted.
                 </p>
               </form>
             </DialogContent>
