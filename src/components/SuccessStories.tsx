@@ -100,7 +100,11 @@ export function SuccessStories() {
     onSuccess: (newInsertedReview) => {
       setReviews((prev) => [newInsertedReview, ...prev.filter((review) => review.id !== newInsertedReview.id)]);
       setTab(newInsertedReview.video_url ? "video" : newInsertedReview.proof_url ? "proof" : "written");
-      queryClient.invalidateQueries({ queryKey: ["reviews"] });
+      queryClient.setQueryData<Review[]>(["reviews"], (previous = []) => [
+        newInsertedReview,
+        ...previous.filter((review) => review.id !== newInsertedReview.id),
+      ]);
+      void queryClient.refetchQueries({ queryKey: ["reviews"], type: "active" });
     },
   });
 

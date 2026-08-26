@@ -1,16 +1,9 @@
 import { createServerFn } from "@tanstack/react-start";
-import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
-import type { Database } from "@/integrations/supabase/types";
 
 export const getReviews = createServerFn({ method: "GET" }).handler(async () => {
-  const url = process.env["SUPABASE_URL"];
-  const key = process.env["SUPABASE_PUBLISHABLE_KEY"];
-  if (!url || !key) throw new Error("Reviews are temporarily unavailable.");
-
-  const client = createClient<Database>(url, key, {
-    auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
-  });
+  const { createPublicReviewsClient } = await import("@/lib/reviews.server");
+  const client = createPublicReviewsClient();
   const { data, error } = await client
     .from("reviews")
     .select("id,name,text,rating,video_url,proof_url,proof_name,created_at")
@@ -42,13 +35,8 @@ export const submitReview = createServerFn({ method: "POST" })
       .parse(input),
   )
   .handler(async ({ data }) => {
-    const url = process.env["SUPABASE_URL"];
-    const key = process.env["SUPABASE_PUBLISHABLE_KEY"];
-    if (!url || !key) throw new Error("Reviews are temporarily unavailable.");
-
-    const client = createClient<Database>(url, key, {
-      auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
-    });
+    const { createPublicReviewsClient } = await import("@/lib/reviews.server");
+    const client = createPublicReviewsClient();
     const { data: inserted, error } = await client
       .from("reviews")
       .insert({
