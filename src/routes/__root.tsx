@@ -179,8 +179,9 @@ function SupabaseConfigError({ missing }: { missing: string[] }) {
 
 function useSupabaseConfig() {
   const missing: string[] = [];
-  const url = import.meta.env.VITE_SUPABASE_URL;
-  const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ?? import.meta.env.VITE_SUPABASE_ANON_KEY;
+  const url = import.meta.env["VITE_SUPABASE_URL"];
+  const publishableKey =
+    import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"] ?? import.meta.env["VITE_SUPABASE_ANON_KEY"];
 
   if (!url) missing.push("VITE_SUPABASE_URL");
   if (!publishableKey) missing.push("VITE_SUPABASE_PUBLISHABLE_KEY");
