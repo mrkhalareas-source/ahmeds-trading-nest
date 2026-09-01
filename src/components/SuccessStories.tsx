@@ -331,9 +331,10 @@ export function SuccessStories() {
                   ) : null}
                 </div>
 
-                <Button type="submit" variant="cta" className="w-full" disabled={createReview.isPending}>
-                  {createReview.isPending ? "Publishing..." : "Publish Success Story"}
+                <Button type="submit" variant="cta" className="w-full">
+                  Publish Success Story
                 </Button>
+
                 <p className="text-center text-xs text-muted-foreground">
                   Your review will appear publicly as soon as it is submitted.
                 </p>
