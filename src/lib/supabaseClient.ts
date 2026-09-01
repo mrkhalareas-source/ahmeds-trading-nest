@@ -6,8 +6,8 @@ import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
 import { brokeredPreviewStorage } from "@/integrations/supabase/previewAuthStorage";
 
-const FALLBACK_SUPABASE_URL = "https://niawnhcvktqyfvvajhtd.supabase.co";
-const FALLBACK_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_BdCtZ0f-oIVOTTkpjDOlOw_MPmEWmGb";
+const FALLBACK_SUPABASE_URL = "https://lbdywyrghjnrsoitmget.supabase.co";
+const FALLBACK_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_HkFA2HK70EkIZJ5O3U44TQ_5hg16Ioq";
 
 export const SUPABASE_URL: string =
   (import.meta.env["VITE_SUPABASE_URL"] as string | undefined) ?? FALLBACK_SUPABASE_URL;

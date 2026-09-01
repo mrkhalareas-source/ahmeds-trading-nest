@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
+import { SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY } from "@/lib/supabaseClient";
 
 function NotFoundComponent() {
   return (
@@ -179,12 +180,10 @@ function SupabaseConfigError({ missing }: { missing: string[] }) {
 
 function useSupabaseConfig() {
   const missing: string[] = [];
-  const url = import.meta.env["VITE_SUPABASE_URL"];
-  const publishableKey =
-    import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"] ?? import.meta.env["VITE_SUPABASE_ANON_KEY"];
-
-  if (!url) missing.push("VITE_SUPABASE_URL");
-  if (!publishableKey) missing.push("VITE_SUPABASE_PUBLISHABLE_KEY");
+  // The wrapper client (src/lib/supabaseClient.ts) supplies Lovable Cloud fallbacks,
+  // so credentials are always resolvable. Kept for diagnostics only.
+  if (!SUPABASE_URL) missing.push("VITE_SUPABASE_URL");
+  if (!SUPABASE_PUBLISHABLE_KEY) missing.push("VITE_SUPABASE_PUBLISHABLE_KEY");
 
   return { ok: missing.length === 0, missing };
 }
