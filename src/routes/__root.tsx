@@ -129,74 +129,15 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
-function SupabaseConfigError({ missing }: { missing: string[] }) {
-  return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0B0E14] px-4">
-      <div className="w-full max-w-xl rounded-2xl border border-[#E5B800]/30 bg-[#0F1117] p-8 shadow-2xl shadow-[#E5B800]/10">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-500/10 text-red-500">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
-              <path d="M12 9v4" />
-              <path d="M12 17h.01" />
-            </svg>
-          </div>
-          <h1 className="text-xl font-bold text-[#E5B800]">Supabase Configuration Missing</h1>
-        </div>
-        <p className="mt-4 text-sm leading-relaxed text-gray-300">
-          The app cannot connect to the backend because the following environment variables are
-          missing:
-        </p>
-        <ul className="mt-4 space-y-2">
-          {missing.map((key) => (
-            <li
-              key={key}
-              className="flex items-center gap-2 rounded-lg border border-red-500/20 bg-red-500/5 px-3 py-2 text-sm font-mono text-red-400"
-            >
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-red-500" />
-              {key}
-            </li>
-          ))}
-        </ul>
-        <div className="mt-6 rounded-lg border border-[#00C805]/20 bg-[#00C805]/5 p-4 text-sm text-gray-300">
-          <strong className="text-[#00C805]">Next step:</strong> Make sure Lovable Cloud / Supabase
-          is enabled for this project, then trigger a fresh production build and publish. Do not
-          hardcode credentials in source files.
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function useSupabaseConfig() {
-  const missing: string[] = [];
-  // The wrapper client (src/lib/supabaseClient.ts) supplies Lovable Cloud fallbacks,
-  // so credentials are always resolvable. Kept for diagnostics only.
-  if (!SUPABASE_URL) missing.push("VITE_SUPABASE_URL");
-  if (!SUPABASE_PUBLISHABLE_KEY) missing.push("VITE_SUPABASE_PUBLISHABLE_KEY");
-
-  return { ok: missing.length === 0, missing };
-}
-
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const { ok, missing } = useSupabaseConfig();
 
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      {ok ? <Outlet /> : <SupabaseConfigError missing={missing} />}
+      <Outlet />
       <Toaster position="top-center" richColors />
     </QueryClientProvider>
   );
 }
+
