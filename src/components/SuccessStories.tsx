@@ -1,6 +1,4 @@
-import { useEffect, useState, type FormEvent } from "react";
-import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
-import { useServerFn } from "@tanstack/react-start";
+import { useState, type FormEvent } from "react";
 import { Image as ImageIcon, PlayCircle, Quote, Star, Upload, X } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -16,9 +14,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { supabase } from "@/lib/supabaseClient";
-import { submitReview } from "@/lib/reviews.functions";
-import { reviewsQueryOptions } from "@/lib/reviews.queries";
 
 type Review = {
   id: string;
@@ -30,6 +25,39 @@ type Review = {
   proof_name: string | null;
   created_at: string;
 };
+
+const INITIAL_REVIEWS: Review[] = [
+  {
+    id: "seed-1",
+    name: "Hamza R.",
+    text: "Ahmed's XAUUSD market structure sessions completely changed my entries. I finally understand liquidity sweeps and order blocks.",
+    rating: 5,
+    video_url: null,
+    proof_url: null,
+    proof_name: null,
+    created_at: new Date().toISOString(),
+  },
+  {
+    id: "seed-2",
+    name: "Bilal A.",
+    text: "The risk management module alone was worth the fee. My drawdown is under control and my equity curve is finally smooth.",
+    rating: 5,
+    video_url: null,
+    proof_url: null,
+    proof_name: null,
+    created_at: new Date().toISOString(),
+  },
+  {
+    id: "seed-3",
+    name: "Sana K.",
+    text: "Daily London and New York analysis makes the strategy click. Lifetime access to the private group is unmatched value.",
+    rating: 5,
+    video_url: null,
+    proof_url: null,
+    proof_name: null,
+    created_at: new Date().toISOString(),
+  },
+];
 
 function Stars({ value }: { value: number }) {
   return (
@@ -53,65 +81,17 @@ function toEmbedUrl(url: string) {
 }
 
 export function SuccessStories() {
-  const { data: fetchedReviews } = useSuspenseQuery(reviewsQueryOptions());
-  const [reviews, setReviews] = useState<Review[]>(fetchedReviews);
+  const [reviews, setReviews] = useState<Review[]>(INITIAL_REVIEWS);
   const [tab, setTab] = useState("written");
   const [open, setOpen] = useState(false);
   const [rating, setRating] = useState(5);
   const [filePreview, setFilePreview] = useState<{ url: string; name: string; file: File } | null>(null);
   const [viewer, setViewer] = useState<{ url: string; name: string } | null>(null);
-  const queryClient = useQueryClient();
-  const submitReviewFn = useServerFn(submitReview);
-
-  useEffect(() => setReviews(fetchedReviews), [fetchedReviews]);
-
-  const createReview = useMutation({
-    mutationFn: async (values: { name: string; text: string; rating: number; videoUrl?: string; proof?: File }) => {
-      let proofPath: string | undefined;
-      let proofName: string | undefined;
-      let signedProofUrl: string | null = null;
-
-      if (values.proof) {
-        proofName = values.proof.name;
-        const extension = values.proof.name.split(".").pop()?.replace(/[^a-zA-Z0-9]/g, "") || "jpg";
-        proofPath = `${crypto.randomUUID()}.${extension}`;
-        const { error: uploadError } = await supabase.storage
-          .from("review-proofs")
-          .upload(proofPath, values.proof, { contentType: values.proof.type, upsert: false });
-        if (uploadError) throw uploadError;
-        const { data: signed, error: signedError } = await supabase.storage
-          .from("review-proofs")
-          .createSignedUrl(proofPath, 3600);
-        if (signedError) throw signedError;
-        signedProofUrl = signed.signedUrl;
-      }
-
-      const inserted = await submitReviewFn({
-        data: {
-          name: values.name,
-          text: values.text,
-          rating: values.rating,
-          ...(values.videoUrl ? { videoUrl: values.videoUrl } : {}),
-          ...(proofPath ? { proofPath, proofName } : {}),
-        },
-      });
-      return { ...inserted, proof_url: signedProofUrl };
-    },
-    onSuccess: (newInsertedReview) => {
-      setReviews((prev) => [newInsertedReview, ...prev.filter((review) => review.id !== newInsertedReview.id)]);
-      setTab(newInsertedReview.video_url ? "video" : newInsertedReview.proof_url ? "proof" : "written");
-      queryClient.setQueryData<Review[]>(["reviews"], (previous = []) => [
-        newInsertedReview,
-        ...previous.filter((review) => review.id !== newInsertedReview.id),
-      ]);
-      void queryClient.refetchQueries({ queryKey: ["reviews"], type: "active" });
-    },
-  });
 
   const videoReviews = reviews.filter((r) => r.video_url);
   const proofReviews = reviews.filter((r) => r.proof_url);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -123,24 +103,26 @@ export function SuccessStories() {
       return;
     }
 
-    try {
-      await createReview.mutateAsync({
-        name,
-        text,
-        rating,
-        ...(videoUrl ? { videoUrl } : {}),
-        ...(filePreview ? { proof: filePreview.file } : {}),
-      });
-      form.reset();
-      setRating(5);
-      if (filePreview) URL.revokeObjectURL(filePreview.url);
-      setFilePreview(null);
-      setOpen(false);
-      toast.success("Review submitted successfully!");
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Review submission failed. Please try again.");
-    }
+    const newReview: Review = {
+      id: `local-${Date.now()}`,
+      name,
+      text,
+      rating,
+      video_url: videoUrl || null,
+      proof_url: filePreview ? filePreview.url : null,
+      proof_name: filePreview ? filePreview.name : null,
+      created_at: new Date().toISOString(),
+    };
+
+    setReviews((prev) => [newReview, ...prev]);
+    setTab(newReview.video_url ? "video" : newReview.proof_url ? "proof" : "written");
+    form.reset();
+    setRating(5);
+    setFilePreview(null);
+    setOpen(false);
+    toast.success("Review submitted successfully!");
   };
+
 
 
   return (
@@ -349,9 +331,10 @@ export function SuccessStories() {
                   ) : null}
                 </div>
 
-                <Button type="submit" variant="cta" className="w-full" disabled={createReview.isPending}>
-                  {createReview.isPending ? "Publishing..." : "Publish Success Story"}
+                <Button type="submit" variant="cta" className="w-full">
+                  Publish Success Story
                 </Button>
+
                 <p className="text-center text-xs text-muted-foreground">
                   Your review will appear publicly as soon as it is submitted.
                 </p>

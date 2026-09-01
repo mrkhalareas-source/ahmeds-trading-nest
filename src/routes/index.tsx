@@ -6,7 +6,6 @@ import { TradingWatermark } from "@/components/TradingWatermark";
 import { WeeklyReport } from "@/components/WeeklyReport";
 import { CourseSection } from "@/components/CourseSection";
 import { SuccessStories } from "@/components/SuccessStories";
-import { reviewsQueryOptions } from "@/lib/reviews.queries";
 import heroChart from "@/assets/hero-chart.jpg";
 
 const TELEGRAM_MAIN = "https://t.me/tradewithahmedofficial";
@@ -258,7 +257,6 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  loader: ({ context }) => context.queryClient.ensureQueryData(reviewsQueryOptions()),
   errorComponent: ({ error }) => (
     <div className="mx-auto max-w-3xl px-5 py-20 text-center" role="alert">
       <h1 className="text-2xl font-bold">This page could not load</h1>
