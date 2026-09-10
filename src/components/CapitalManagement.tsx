@@ -1,8 +1,7 @@
-import { ArrowUpRight, MessageCircle } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const TELEGRAM_ADMIN = "https://t.me/tradewithahmedofficial";
-const WHATSAPP_CHANNEL = "https://www.whatsapp.com/channel/0029VbAzGiwATRSpsC9ZL90F";
 
 
 export function CapitalManagement() {
