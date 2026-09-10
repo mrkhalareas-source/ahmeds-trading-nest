@@ -1,26 +1,9 @@
-import { ArrowUpRight, ChartLine, Handshake, MessageCircle, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const TELEGRAM_ADMIN = "https://t.me/tradewithahmedofficial";
 const WHATSAPP_CHANNEL = "https://www.whatsapp.com/channel/0029VbAzGiwATRSpsC9ZL90F";
 
-const FEATURES = [
-  {
-    icon: ShieldCheck,
-    title: "Strict Risk Management",
-    text: "Fixed risk per trade, hard drawdown limits, and capital preservation before profit.",
-  },
-  {
-    icon: Handshake,
-    title: "Transparent Profit Sharing",
-    text: "Agreed profit split settled at the end of every cycle — no hidden fees or charges.",
-  },
-  {
-    icon: ChartLine,
-    title: "Weekly Performance Tracking",
-    text: "Verified weekly statements with gain %, pips, and win rate shared directly with you.",
-  },
-];
 
 export function CapitalManagement() {
   return (
