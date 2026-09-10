@@ -1,8 +1,7 @@
-import { ArrowUpRight, MessageCircle } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const TELEGRAM_ADMIN = "https://t.me/tradewithahmedofficial";
-const WHATSAPP_CHANNEL = "https://www.whatsapp.com/channel/0029VbAzGiwATRSpsC9ZL90F";
 
 
 export function CapitalManagement() {
@@ -25,11 +24,6 @@ export function CapitalManagement() {
           <Button asChild variant="cta" size="xl">
             <a href={TELEGRAM_ADMIN} target="_blank" rel="noopener noreferrer">
               Apply for Capital Management <ArrowUpRight />
-            </a>
-          </Button>
-          <Button asChild size="xl" variant="surface">
-            <a href={WHATSAPP_CHANNEL} target="_blank" rel="noopener noreferrer">
-              <MessageCircle /> Ask on WhatsApp
             </a>
           </Button>
         </div>
