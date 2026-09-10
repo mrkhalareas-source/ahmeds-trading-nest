@@ -1,26 +1,9 @@
-import { ArrowUpRight, ChartLine, Handshake, MessageCircle, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const TELEGRAM_ADMIN = "https://t.me/tradewithahmedofficial";
 const WHATSAPP_CHANNEL = "https://www.whatsapp.com/channel/0029VbAzGiwATRSpsC9ZL90F";
 
-const FEATURES = [
-  {
-    icon: ShieldCheck,
-    title: "Strict Risk Management",
-    text: "Fixed risk per trade, hard drawdown limits, and capital preservation before profit.",
-  },
-  {
-    icon: Handshake,
-    title: "Transparent Profit Sharing",
-    text: "Agreed profit split settled at the end of every cycle — no hidden fees or charges.",
-  },
-  {
-    icon: ChartLine,
-    title: "Weekly Performance Tracking",
-    text: "Verified weekly statements with gain %, pips, and win rate shared directly with you.",
-  },
-];
 
 export function CapitalManagement() {
   return (
@@ -34,27 +17,11 @@ export function CapitalManagement() {
             CAPITAL MANAGEMENT / <span className="text-gradient-gold">INVESTMENT PROGRAM</span>
           </h2>
           <p className="mt-4 text-muted-foreground">
-            For investors who want their capital traded professionally. Deposit into your own broker
-            account, keep full control of withdrawals, and grow it under clear risk rules with a
-            transparent profit-sharing agreement and full weekly reporting.
+            Professional capital growth with strict risk rules and transparent profit sharing.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {FEATURES.map((f) => (
-            <article key={f.title} className="glass-card flex items-start gap-4 p-6">
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary/12 text-primary">
-                <f.icon className="h-5 w-5" />
-              </span>
-              <div className="min-w-0">
-                <h3 className="text-sm font-semibold text-foreground sm:text-base">{f.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{f.text}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Button asChild variant="cta" size="xl">
             <a href={TELEGRAM_ADMIN} target="_blank" rel="noopener noreferrer">
               Apply for Capital Management <ArrowUpRight />
