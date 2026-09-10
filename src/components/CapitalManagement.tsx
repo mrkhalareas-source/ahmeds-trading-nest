@@ -27,11 +27,6 @@ export function CapitalManagement() {
               Apply for Capital Management <ArrowUpRight />
             </a>
           </Button>
-          <Button asChild size="xl" variant="surface">
-            <a href={WHATSAPP_CHANNEL} target="_blank" rel="noopener noreferrer">
-              <MessageCircle /> Ask on WhatsApp
-            </a>
-          </Button>
         </div>
 
         <p className="mt-6 text-center text-xs text-muted-foreground">
