@@ -33,7 +33,7 @@ export function TrackRecord({ week = LATEST }: { week?: WeekResult }) {
             Latest Weekly Performance
           </span>
           <h2 className="mt-5 text-3xl font-bold sm:text-4xl lg:text-5xl">
-            WEEKLY TRADING <span className="text-gradient-gold">RESULTS</span>
+            WEEKLY  RESULTS of Investment
           </h2>
         </div>
 
