@@ -12,7 +12,7 @@ export type WeekResult = {
 };
 
 const LATEST: WeekResult = {
-  dateRange: "17 - 21 Aug 2026",
+  dateRange: "07 - 11 Sep  2026",
   gain: "+18.4%",
   pips: "+3,750",
   winRate: "84%",
