@@ -19,7 +19,7 @@ export type WeeklyResults = {
 
 const DEFAULT_RESULTS: WeeklyResults = {
   brand: "TRADE WITH AHMED - TRADEWITHAHMED.SITE",
-  dateRange: "17 - 21 AUG 2026",
+  dateRange: "14 - 18 SEP 2026",
   trades: 25,
   wins: 21,
   losses: 4,
