@@ -12,10 +12,10 @@ export type WeekResult = {
 };
 
 const LATEST: WeekResult = {
-  dateRange: "07 - 11 SEP  2026",
+  dateRange: "14 - 18 SEP  2026",
   gain: "+18.4%",
-  pips: "+3,750",
-  winRate: "84%",
+  pips: "+5,280",
+  winRate: "81%",
 };
 
 export function TrackRecord({ week = LATEST }: { week?: WeekResult }) {
