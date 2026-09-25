@@ -1,4 +1,4 @@
-import { CalendarDays, Send, XCircle } from "lucide-react";
+import { CalendarDays, CheckCircle2, Send, ShieldCheck, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const TELEGRAM_MAIN = "https://t.me/tradewithahmedofficial";
@@ -84,20 +84,26 @@ export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyRe
 
   return (
     <section id="weekly-report" className="relative">
-      <div className="mx-auto max-w-5xl px-5 py-20">
-        <div className="overflow-hidden rounded-2xl border border-accent/30 bg-card/70 shadow-[0_0_60px_-30px_var(--accent)] backdrop-blur-xl">
+      <div className="mx-auto max-w-5xl px-5 pb-20 pt-5">
+        <div className="performance-shell overflow-hidden">
           {/* Top bar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/70 bg-background/60 px-5 py-4">
-            <span className="text-xs font-semibold tracking-[0.16em] text-muted-foreground sm:text-sm">
-              {results.brand}
-            </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/45 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-              <CalendarDays className="h-3.5 w-3.5" /> {results.dateRange}
-            </span>
+          <div className="flex flex-col gap-4 border-b border-border bg-background/45 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-7">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Financial Intelligence</span>
+              <p className="mt-1 text-sm font-semibold text-foreground">{results.brand}</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
+                <ShieldCheck className="h-3.5 w-3.5" /> Verified Report
+              </span>
+              <span className="inline-flex items-center gap-1.5 border-l border-border pl-3 text-xs font-medium text-muted-foreground">
+                <CalendarDays className="h-3.5 w-3.5" /> {results.dateRange}
+              </span>
+            </div>
           </div>
 
           {/* Header */}
-          <div className="px-5 py-10 text-center sm:px-8">
+          <div className="px-5 py-9 text-center sm:px-8">
             <span className="inline-flex rounded-full border border-accent/50 bg-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-accent">
               Official Weekly Report
             </span>
@@ -107,7 +113,7 @@ export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyRe
             <p className="mt-2 text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground">
               Total Net Profit
             </p>
-            <p className="mt-4 font-display text-5xl font-extrabold text-primary drop-shadow-[0_0_28px_color-mix(in_oklab,var(--primary)_45%,transparent)] sm:text-6xl">
+            <p className="mt-4 font-mono text-5xl font-extrabold tabular-nums text-primary sm:text-6xl">
               {fmt(net)} PIPS
             </p>
           </div>
@@ -117,12 +123,12 @@ export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyRe
             {metrics.map((m) => (
               <div
                 key={m.label}
-                className="rounded-xl border border-border bg-background/50 p-4 text-center"
+                className="metric-cell p-4 text-left"
               >
-                <p className={`font-display text-2xl font-bold ${m.tone}`}>{m.value}</p>
-                <p className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
                   {m.label}
                 </p>
+                <p className={`mt-2 font-mono text-2xl font-bold tabular-nums ${m.tone}`}>{m.value}</p>
               </div>
             ))}
           </div>
@@ -132,20 +138,20 @@ export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyRe
             {breakdown.map((b) => (
               <div
                 key={b.label}
-                className="rounded-xl border border-border bg-background/50 p-5 text-center"
+                className="metric-cell border-accent/20 bg-accent/5 p-5 text-left"
               >
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">{b.label}</p>
-                <p className={`mt-2 font-display text-2xl font-bold ${b.tone}`}>{b.value}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">{b.label}</p>
+                <p className={`mt-2 font-mono text-2xl font-bold tabular-nums ${b.tone}`}>{b.value}</p>
               </div>
             ))}
           </div>
 
           {/* Winning trades */}
           <div className="px-5 pb-6 sm:px-8">
-            <div className="rounded-xl border border-accent/35 bg-accent/5 p-5">
+            <div className="rounded-lg border border-accent/30 bg-accent/5 p-5">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <h3 className="text-sm font-bold uppercase tracking-wider text-accent">
-                  ✔ Winning Trades ({results.winningTrades.length} Trades)
+                  <CheckCircle2 className="mr-1 inline h-4 w-4 -mt-0.5" /> Winning Trades ({results.winningTrades.length} Trades)
                 </h3>
                 <span className="rounded-full border border-accent/45 bg-accent/10 px-3 py-1 text-sm font-bold text-accent">
                   {fmt(results.totalProfitPips)} PIPS
@@ -155,12 +161,12 @@ export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyRe
                 {results.winningTrades.map((t, i) => (
                   <li
                     key={`win-${i}`}
-                    className="flex items-center justify-between rounded-lg border border-border bg-background/50 px-3 py-2 text-sm"
+                    className="flex items-center justify-between rounded-md border border-border bg-background/55 px-3 py-2 text-xs"
                   >
                     <span className="text-muted-foreground">
                       ✓ {t.pair} {t.side}
                     </span>
-                    <span className="font-semibold text-accent">{fmt(t.pips)}</span>
+                    <span className="font-mono font-semibold tabular-nums text-accent">{fmt(t.pips)}</span>
                   </li>
                 ))}
               </ul>
@@ -169,7 +175,7 @@ export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyRe
 
           {/* Losing trades */}
           <div className="px-5 pb-8 sm:px-8">
-            <div className="rounded-xl border border-destructive/40 bg-destructive/5 p-5">
+            <div className="rounded-lg border border-destructive/40 bg-destructive/5 p-5">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <h3 className="text-sm font-bold uppercase tracking-wider text-destructive">
                   <XCircle className="inline h-4 w-4 -mt-0.5" /> Losing Trades ({results.losingTrades.length} Trades)
@@ -182,12 +188,12 @@ export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyRe
                 {results.losingTrades.map((t, i) => (
                   <li
                     key={`loss-${i}`}
-                    className="flex items-center justify-between rounded-lg border border-border bg-background/50 px-3 py-2 text-sm"
+                    className="flex items-center justify-between rounded-md border border-border bg-background/55 px-3 py-2 text-xs"
                   >
                     <span className="text-muted-foreground">
                       <XCircle className="inline h-3.5 w-3.5 text-destructive" /> {t.pair} {t.side}
                     </span>
-                    <span className="font-semibold text-destructive">{fmt(t.pips)}</span>
+                    <span className="font-mono font-semibold tabular-nums text-destructive">{fmt(t.pips)}</span>
                   </li>
                 ))}
               </ul>
@@ -195,10 +201,10 @@ export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyRe
           </div>
 
           {/* Footer */}
-          <div className="border-t border-border/70 bg-background/60 px-5 py-8 text-center sm:px-8">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-              The market rewards discipline, not emotions.
-            </p>
+          <div className="border-t border-border bg-background/45 px-5 py-6 sm:px-8">
+            <div className="flex items-center justify-center gap-2 rounded-md border border-accent/25 bg-accent/10 px-4 py-3 text-center text-xs font-bold uppercase tracking-[0.16em] text-accent">
+              <ShieldCheck className="h-4 w-4 shrink-0" /> The market rewards discipline, not emotions.
+            </div>
             <Button asChild variant="cta" size="xl" className="mt-6 w-full">
               <a href={TELEGRAM_MAIN} target="_blank" rel="noopener noreferrer">
                 <Send /> JOIN TELEGRAM: @tradewithahmedofficial
