@@ -207,7 +207,9 @@ export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyRe
             </div>
             <Button asChild variant="cta" size="xl" className="mt-6 w-full">
               <a href={TELEGRAM_MAIN} target="_blank" rel="noopener noreferrer">
-                <Send /> JOIN TELEGRAM: @tradewithahmedofficial
+                <Send />
+                <span className="sm:hidden">JOIN TELEGRAM</span>
+                <span className="hidden sm:inline">JOIN TELEGRAM: @tradewithahmedofficial</span>
               </a>
             </Button>
           </div>
