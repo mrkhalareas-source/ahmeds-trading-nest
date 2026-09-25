@@ -1,4 +1,4 @@
-import { CalendarDays, FileCheck2, ImageIcon } from "lucide-react";
+import { CalendarDays, Compass, Download, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const TELEGRAM_ADMIN = "https://t.me/tradewithahmedofficial";
@@ -27,64 +27,54 @@ export function TrackRecord({ week = LATEST }: { week?: WeekResult }) {
 
   return (
     <section id="track-record" className="relative">
-      <div className="mx-auto max-w-3xl px-5 py-20">
-        <div className="text-center">
-          <span className="inline-flex rounded-full border border-primary/45 bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-primary">
-            Latest Weekly Performance
-          </span>
-          <h2 className="mt-5 text-3xl font-bold sm:text-4xl lg:text-5xl">
-            WEEKLY  RESULTS of Investment
-          </h2>
-        </div>
+      <div className="mx-auto max-w-5xl px-5 pb-5 pt-20">
+        <article className="performance-shell overflow-hidden">
+          <header className="flex flex-col gap-5 border-b border-border bg-background/45 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-7">
+            <div className="flex items-center gap-3">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 text-primary">
+                <Compass className="h-5 w-5" />
+              </span>
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+                  Latest Weekly Performance
+                </span>
+                <h2 className="mt-1 text-xl font-semibold sm:text-2xl">
+                  WEEKLY RESULTS <span className="font-normal text-muted-foreground">of Investment</span>
+                </h2>
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                <CalendarDays className="h-3.5 w-3.5 text-primary" />
+                {week.dateRange}
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
+                <ShieldCheck className="h-3.5 w-3.5" /> Verified
+              </span>
+            </div>
+          </header>
 
-        <article className="glass-card mt-10 p-6 sm:p-8">
-          <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
-            <span className="inline-flex min-w-0 items-center gap-2 text-sm font-semibold text-muted-foreground">
-              <CalendarDays className="h-4 w-4 shrink-0 text-primary" />
-              <span className="truncate">{week.dateRange}</span>
-            </span>
-            <span className="shrink-0 rounded-full border border-accent/45 bg-accent/10 px-3 py-1 text-xs font-bold text-accent">
-              Verified
-            </span>
-          </div>
-
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+          <div className="p-5 sm:p-7">
+            <div className="grid gap-3 sm:grid-cols-3">
             {stats.map((s) => (
               <div
                 key={s.label}
-                className="rounded-xl border border-border bg-background/50 p-4 text-center"
+                className="metric-cell p-5 text-left"
               >
-                <p className={`font-display text-2xl font-bold ${s.tone}`}>{s.value}</p>
-                <p className="mt-1 text-[11px] uppercase tracking-widest text-muted-foreground">
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
                   {s.label}
                 </p>
+                <p className={`mt-2 font-mono text-3xl font-bold tabular-nums ${s.tone}`}>{s.value}</p>
               </div>
             ))}
-          </div>
+            </div>
 
-          <div className="mt-6 overflow-hidden rounded-xl border border-border/80 bg-background/40">
-            {week.image ? (
-              <img
-                src={week.image}
-                alt={`Trading statement screenshot for ${week.dateRange}`}
-                loading="lazy"
-                className="h-56 w-full object-cover"
-              />
-            ) : (
-              <div className="flex h-44 flex-col items-center justify-center gap-2 text-muted-foreground sm:h-56">
-                <ImageIcon className="h-6 w-6" />
-                <span className="px-6 text-center text-xs">
-                  Statement screenshot preview
-                </span>
-              </div>
-            )}
+            <Button asChild variant="cta" size="xl" className="mt-5 w-full">
+              <a href={TELEGRAM_ADMIN} target="_blank" rel="noopener noreferrer">
+                <Download /> Download Week Statement
+              </a>
+            </Button>
           </div>
-
-          <Button asChild variant="cta" size="xl" className="mt-6 w-full">
-            <a href={TELEGRAM_ADMIN} target="_blank" rel="noopener noreferrer">
-              <FileCheck2 /> Download / Verify Statement
-            </a>
-          </Button>
         </article>
       </div>
     </section>
