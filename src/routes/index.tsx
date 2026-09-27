@@ -249,6 +249,36 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const MONTHLY_CHALLENGES = [
+  {
+    name: "Umrah Challenge",
+    initial: "$300",
+    target: "$2,000",
+    icon: Trophy,
+    description:
+      "A disciplined account growth challenge dedicated to funding an Umrah journey through structured risk management and high-probability SMC/ICT setups.",
+    highlight: "Faith-Driven Growth",
+  },
+  {
+    name: "$100 to $1,000 Small Account Challenge",
+    initial: "$100",
+    target: "$1,000",
+    icon: Target,
+    description:
+      "Designed for beginner traders focusing on strict lot-sizing, compound growth, and emotional discipline on small balance accounts.",
+    highlight: "Beginner Friendly",
+  },
+  {
+    name: "$500 to $5,000 Funded Growth Challenge",
+    initial: "$500",
+    target: "$5,000",
+    icon: Zap,
+    description:
+      "Advanced risk-to-reward account expansion challenge tracking weekly session outlooks and precision XAUUSD setups.",
+    highlight: "Advanced Level",
+  },
+];
+
 function SectionHeading({
   eyebrow,
   title,
