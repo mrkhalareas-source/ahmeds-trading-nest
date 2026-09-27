@@ -62,24 +62,6 @@ const BROKERS = [
 
 const COMMUNITIES = [
   {
-    title: "Main Telegram Community",
-    access: "Public",
-    text: "The core hub for daily discussion, analysis and trader support.",
-    href: TELEGRAM_MAIN,
-  },
-  {
-    title: "Market Updates Channel",
-    access: "Public",
-    text: "Live XAUUSD and Forex market updates, bias and session outlooks.",
-    href: "https://t.me/updatesoftradewithahmedofficial",
-  },
-  {
-    title: "Copy Trading Channel",
-    access: "Public",
-    text: "Follow executions and copy-trading updates in real time.",
-    href: "https://t.me/copytradingoftradewithahmed",
-  },
-  {
     title: "Trade With Ahmed Community",
     access: "Public",
     text: "Account challenges, growth journeys and performance tracking.",
