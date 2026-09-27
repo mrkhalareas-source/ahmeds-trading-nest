@@ -249,6 +249,36 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const MONTHLY_CHALLENGES = [
+  {
+    name: "Umrah Challenge",
+    initial: "$300",
+    target: "$2,000",
+    icon: Trophy,
+    description:
+      "A disciplined account growth challenge dedicated to funding an Umrah journey through structured risk management and high-probability SMC/ICT setups.",
+    highlight: "Faith-Driven Growth",
+  },
+  {
+    name: "$100 to $1,000 Small Account Challenge",
+    initial: "$100",
+    target: "$1,000",
+    icon: Target,
+    description:
+      "Designed for beginner traders focusing on strict lot-sizing, compound growth, and emotional discipline on small balance accounts.",
+    highlight: "Beginner Friendly",
+  },
+  {
+    name: "$500 to $5,000 Funded Growth Challenge",
+    initial: "$500",
+    target: "$5,000",
+    icon: Zap,
+    description:
+      "Advanced risk-to-reward account expansion challenge tracking weekly session outlooks and precision XAUUSD setups.",
+    highlight: "Advanced Level",
+  },
+];
+
 function SectionHeading({
   eyebrow,
   title,
@@ -588,6 +618,63 @@ function Index() {
 
         {/* Student Success Stories */}
         <SuccessStories />
+
+        {/* Monthly Account Challenges */}
+        <section id="challenges" className="mx-auto max-w-7xl px-5 py-20">
+          <SectionHeading
+            eyebrow="Account Growth Challenges"
+            title="Monthly Account Challenges"
+            text="Structured monthly growth challenges with strict risk rules — grow your account step by step alongside the community."
+          />
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {MONTHLY_CHALLENGES.map((c) => {
+              const Icon = c.icon;
+              return (
+                <article
+                  key={c.name}
+                  className="panel group relative flex flex-col overflow-hidden p-7 transition-colors duration-300 hover:border-primary/50"
+                >
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-primary/10 blur-3xl transition-opacity duration-300 group-hover:opacity-100"
+                  />
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="grid h-11 w-11 place-items-center rounded-xl bg-primary/12 text-primary">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent">
+                      {c.highlight}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-5 font-display text-xl font-bold leading-snug">
+                    {c.name}
+                  </h3>
+
+                  <div className="mt-4 flex items-center gap-2">
+                    <span className="rounded-lg border border-border bg-secondary/60 px-3 py-1.5 text-sm font-semibold text-muted-foreground">
+                      Start: {c.initial}
+                    </span>
+                    <TrendingDown className="h-4 w-4 rotate-180 text-accent" />
+                    <span className="rounded-lg border border-primary/40 bg-primary/10 px-3 py-1.5 text-sm font-semibold text-primary">
+                      Target: {c.target}
+                    </span>
+                  </div>
+
+                  <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    {c.description}
+                  </p>
+
+                  <Button asChild variant="cta" className="mt-6 w-full">
+                    <a href={TELEGRAM_MAIN} target="_blank" rel="noopener noreferrer">
+                      Join Challenge <ArrowUpRight />
+                    </a>
+                  </Button>
+                </article>
+              );
+            })}
+          </div>
+        </section>
 
         {/* Brokers */}
         <section id="brokers" className="mx-auto max-w-7xl px-5 py-20">
