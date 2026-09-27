@@ -41,7 +41,7 @@ const BROKERS = [
     href: "https://my.dooprime.com/links/go/73751",
   },
   {
-    name: "DERIV",
+    name: "XM",
     features: ["Synthetic Indices", "24/7 Trading", "Low Minimum Deposit"],
     cta: "Trade on Deriv",
     href: "https://affs.click/RXAwT",
