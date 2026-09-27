@@ -29,8 +29,8 @@ type Review = {
 const INITIAL_REVIEWS: Review[] = [
   {
     id: "seed-1",
-    name: "Hamza R.",
-    text: "Ahmed's XAUUSD market structure sessions completely changed my entries. I finally understand liquidity sweeps and order blocks.",
+    name: "Usman K.",
+    text: "The SMC liquidity concepts completely changed how I trade Gold. My win rate improved significantly after joining.",
     rating: 5,
     video_url: null,
     proof_url: null,
@@ -39,8 +39,8 @@ const INITIAL_REVIEWS: Review[] = [
   },
   {
     id: "seed-2",
-    name: "Bilal A.",
-    text: "The risk management module alone was worth the fee. My drawdown is under control and my equity curve is finally smooth.",
+    name: "Hassan M.",
+    text: "Clear and precise trade breakdowns before every London and New York session. Best trading mentorship experience.",
     rating: 5,
     video_url: null,
     proof_url: null,
@@ -49,8 +49,8 @@ const INITIAL_REVIEWS: Review[] = [
   },
   {
     id: "seed-3",
-    name: "Sana K.",
-    text: "Daily London and New York analysis makes the strategy click. Lifetime access to the private group is unmatched value.",
+    name: "Ayesha T.",
+    text: "Proper risk management and order block identification taught me patience and eliminated my overtrading.",
     rating: 5,
     video_url: null,
     proof_url: null,
