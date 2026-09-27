@@ -82,7 +82,7 @@ export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyRe
 
   return (
     <section id="weekly-report" className="relative">
-      <div className="mx-auto max-w-5xl px-5 pb-20 pt-5">
+      <div className="mx-auto max-w-5xl px-5 pb-20">
         <div className="performance-shell overflow-hidden">
           {/* Top bar */}
           <div className="flex flex-col gap-4 border-b border-border bg-background/45 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-7">
