@@ -73,7 +73,7 @@ export function CourseSection() {
             Lifetime Mentorship
           </span>
           <h2 className="mt-3 text-3xl font-bold sm:text-4xl lg:text-5xl">
-            INSTITUTIONAL <span className="text-gradient-gold">TRADING COURSE</span>
+            INSTITUTIONAL <span className="text-gradient-gold">TRADING&nbsp;{"\n"}1 to 1 Mentorship</span>
           </h2>
           <p className="mt-4 text-muted-foreground">
             Master Forex &amp; XAUUSD Market Structure with Lifetime Mentorship
