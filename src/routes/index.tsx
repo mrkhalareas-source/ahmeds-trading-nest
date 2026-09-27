@@ -4,7 +4,6 @@ import { CircleAlert as AlertCircle, ArrowUpRight, ChartBar as BarChart3, Bitcoi
 import { Button } from "@/components/ui/button";
 import { TradingWatermark } from "@/components/TradingWatermark";
 import { WeeklyReport } from "@/components/WeeklyReport";
-import { CapitalManagement } from "@/components/CapitalManagement";
 import { TrackRecord } from "@/components/TrackRecord";
 import { CourseSection } from "@/components/CourseSection";
 import { SuccessStories } from "@/components/SuccessStories";
@@ -599,9 +598,6 @@ function Index() {
             </div>
           </div>
         </section>
-
-        {/* Capital Management / Investment Program */}
-        <CapitalManagement />
 
         {/* Weekly Results & Track Record */}
         <TrackRecord />
