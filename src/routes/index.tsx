@@ -80,7 +80,7 @@ const COMMUNITIES = [
     href: "https://t.me/copytradingoftradewithahmed",
   },
   {
-    title: "Trading Challenge Channel",
+    title: "Trade With Ahmed Community",
     access: "Public",
     text: "Account challenges, growth journeys and performance tracking.",
     href: "https://t.me/tradingchallengeoftradewithahmed",
