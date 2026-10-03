@@ -10,6 +10,8 @@ import heroChart from "@/assets/hero-chart.jpg";
 
 const TELEGRAM_MAIN = "https://t.me/tradewithahmedofficial";
 const WHATSAPP_CHANNEL = "https://www.whatsapp.com/channel/0029VbAzGiwATRSpsC9ZL90F";
+const WHATSAPP_DIRECT = "https://wa.me/923335359534";
+const WHATSAPP_NUMBER = "+92 333 5359534";
 
 const NAV = [
   { label: "Home", href: "#home" },
