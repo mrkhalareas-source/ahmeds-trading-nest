@@ -1,7 +1,10 @@
 import { CalendarDays, CheckCircle2, Send, ShieldCheck, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 
 const TELEGRAM_MAIN = "https://t.me/tradewithahmedofficial";
+const WHATSAPP_DIRECT = "https://wa.me/923335359534";
+const WHATSAPP_NUMBER = "+92 333 5359534";
 
 export type Trade = { pair: string; side: "BUY" | "SELL"; pips: number };
 
@@ -203,13 +206,22 @@ export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyRe
             <div className="flex items-center justify-center gap-2 rounded-md border border-accent/25 bg-accent/10 px-4 py-3 text-center text-xs font-bold uppercase tracking-[0.16em] text-accent">
               <ShieldCheck className="h-4 w-4 shrink-0" /> The market rewards discipline, not emotions.
             </div>
-            <Button asChild variant="cta" size="xl" className="mt-6 w-full">
-              <a href={TELEGRAM_MAIN} target="_blank" rel="noopener noreferrer">
-                <Send />
-                <span className="sm:hidden">JOIN TELEGRAM</span>
-                <span className="hidden sm:inline">JOIN TELEGRAM: @tradewithahmedofficial</span>
-              </a>
-            </Button>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <Button asChild variant="cta" size="xl">
+                <a href={TELEGRAM_MAIN} target="_blank" rel="noopener noreferrer">
+                  <Send />
+                  <span className="sm:hidden">JOIN TELEGRAM</span>
+                  <span className="hidden sm:inline">JOIN TELEGRAM: @tradewithahmedofficial</span>
+                </a>
+              </Button>
+              <Button asChild variant="goldOutline" size="xl">
+                <a href={WHATSAPP_DIRECT} target="_blank" rel="noopener noreferrer">
+                  <WhatsAppIcon className="h-5 w-5" />
+                  <span className="sm:hidden">WHATSAPP</span>
+                  <span className="hidden sm:inline">WHATSAPP: {WHATSAPP_NUMBER}</span>
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
