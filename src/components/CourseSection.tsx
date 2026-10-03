@@ -12,9 +12,12 @@ import {
   Waves,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 
 const TELEGRAM_ADMIN = "https://t.me/tradewithahmedofficial";
 const TELEGRAM_MENTORSHIP = "https://t.me/+GHPraAZEjz8zYjk0";
+const WHATSAPP_DIRECT = "https://wa.me/923335359534";
+const WHATSAPP_NUMBER = "+92 333 5359534";
 
 const COURSE_FEATURES = [
   {
@@ -115,6 +118,11 @@ export function CourseSection() {
             <a href={TELEGRAM_ADMIN} target="_blank" rel="noopener noreferrer">
               <Send className="text-cyan drop-shadow-[0_0_6px_var(--cyan)]" /> Contact Admin on
               Telegram
+            </a>
+          </Button>
+          <Button asChild variant="goldOutline" size="xl">
+            <a href={WHATSAPP_DIRECT} target="_blank" rel="noopener noreferrer">
+              <WhatsAppIcon className="h-5 w-5" /> WhatsApp {WHATSAPP_NUMBER}
             </a>
           </Button>
         </div>
