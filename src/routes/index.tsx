@@ -245,7 +245,9 @@ export const Route = createFileRoute("/")({
   errorComponent: ({ error }) => (
     <div className="mx-auto max-w-3xl px-5 py-20 text-center" role="alert">
       <h1 className="text-2xl font-bold">This page could not load</h1>
-      <p className="mt-3 text-muted-foreground">{error.message}</p>
+      <p className="mt-3 text-muted-foreground">
+        {error instanceof Error ? error.message : String(error)}
+      </p>
     </div>
   ),
   notFoundComponent: () => <div className="p-8 text-center">Page not found.</div>,
@@ -420,6 +422,17 @@ function Index() {
                   </a>
                 </Button>
               </div>
+              <p className="mt-3 text-sm text-muted-foreground">
+                If WhatsApp is not responding,{" "}
+                <a
+                  href={TELEGRAM_MAIN}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium underline decoration-primary/40 underline-offset-4 transition-colors hover:text-foreground hover:decoration-primary"
+                >
+                  contact on Telegram
+                </a>
+              </p>
               <dl className="mt-10 grid max-w-lg grid-cols-3 gap-4">
                 {[
                   ["6+", "Trading Communities"],
