@@ -7,6 +7,7 @@ import { WeeklyReport } from "@/components/WeeklyReport";
 import { CourseSection } from "@/components/CourseSection";
 import { SuccessStories } from "@/components/SuccessStories";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
+import { WhatsAppFallbackNote } from "@/components/WhatsAppFallbackNote";
 import heroChart from "@/assets/hero-chart.jpg";
 
 const TELEGRAM_MAIN = "https://t.me/tradewithahmedofficial";
@@ -340,11 +341,14 @@ function Index() {
                 <Send /> Join Telegram
               </a>
             </Button>
-            <Button asChild variant="surface" className="hidden md:inline-flex">
-              <a href={WHATSAPP_DIRECT} target="_blank" rel="noopener noreferrer">
-                <WhatsAppIcon className="h-4 w-4" /> WhatsApp
-              </a>
-            </Button>
+            <div className="hidden flex-col items-center gap-1 md:flex">
+              <Button asChild variant="surface">
+                <a href={WHATSAPP_DIRECT} target="_blank" rel="noopener noreferrer">
+                  <WhatsAppIcon className="h-4 w-4" /> WhatsApp
+                </a>
+              </Button>
+              <WhatsAppFallbackNote />
+            </div>
             <Button
               variant="ghost"
               size="icon"
@@ -383,6 +387,7 @@ function Index() {
                   <WhatsAppIcon className="h-4 w-4" /> WhatsApp {WHATSAPP_NUMBER}
                 </a>
               </Button>
+              <WhatsAppFallbackNote className="mt-2" />
             </li>
           </ul>
         ) : null}
@@ -422,17 +427,7 @@ function Index() {
                   </a>
                 </Button>
               </div>
-              <p className="mt-3 text-sm text-muted-foreground">
-                If WhatsApp is not responding,{" "}
-                <a
-                  href={TELEGRAM_MAIN}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium underline decoration-primary/40 underline-offset-4 transition-colors hover:text-foreground hover:decoration-primary"
-                >
-                  contact on Telegram
-                </a>
-              </p>
+              <WhatsAppFallbackNote className="mt-3 text-left!" />
               <dl className="mt-10 grid max-w-lg grid-cols-3 gap-4">
                 {[
                   ["6+", "Trading Communities"],
@@ -542,6 +537,10 @@ function Index() {
                         <WhatsAppIcon className="h-4 w-4" /> Join via WhatsApp
                       </a>
                     </Button>
+                    <WhatsAppFallbackNote
+                      href="https://t.me/tradingchallengeoftradewithahmed"
+                      className="mt-1"
+                    />
                   </div>
                 </article>
               ))}
@@ -725,6 +724,7 @@ function Index() {
                         <WhatsAppIcon className="h-4 w-4" /> Join via WhatsApp
                       </a>
                     </Button>
+                    <WhatsAppFallbackNote className="mt-1" />
                   </div>
                 </article>
               );
@@ -804,6 +804,7 @@ function Index() {
                       <WhatsAppIcon className="h-4 w-4" /> Contact on WhatsApp
                     </a>
                   </Button>
+                  <WhatsAppFallbackNote href={c.href} className="mt-1" />
                 </div>
               </article>
             ))}
@@ -839,11 +840,14 @@ function Index() {
                 <Send /> Join Free Telegram
               </a>
             </Button>
-            <Button asChild variant="goldOutline" size="lg">
-              <a href={WHATSAPP_DIRECT} target="_blank" rel="noopener noreferrer">
-                <WhatsAppIcon className="h-5 w-5" /> WhatsApp {WHATSAPP_NUMBER}
-              </a>
-            </Button>
+            <div className="flex flex-col items-center gap-2">
+              <Button asChild variant="goldOutline" size="lg">
+                <a href={WHATSAPP_DIRECT} target="_blank" rel="noopener noreferrer">
+                  <WhatsAppIcon className="h-5 w-5" /> WhatsApp {WHATSAPP_NUMBER}
+                </a>
+              </Button>
+              <WhatsAppFallbackNote />
+            </div>
             <Button asChild variant="surface" size="lg">
               <a href={WHATSAPP_CHANNEL} target="_blank" rel="noopener noreferrer">
                 WhatsApp Channel

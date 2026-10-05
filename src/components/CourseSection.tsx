@@ -120,11 +120,14 @@ export function CourseSection() {
               Telegram
             </a>
           </Button>
-          <Button asChild variant="goldOutline" size="xl">
-            <a href={WHATSAPP_DIRECT} target="_blank" rel="noopener noreferrer">
-              <WhatsAppIcon className="h-5 w-5" /> WhatsApp {WHATSAPP_NUMBER}
-            </a>
-          </Button>
+          <div className="flex flex-col items-center gap-2">
+            <Button asChild variant="goldOutline" size="xl">
+              <a href={WHATSAPP_DIRECT} target="_blank" rel="noopener noreferrer">
+                <WhatsAppIcon className="h-5 w-5" /> WhatsApp {WHATSAPP_NUMBER}
+              </a>
+            </Button>
+            <WhatsAppFallbackNote href={TELEGRAM_MENTORSHIP} />
+          </div>
         </div>
       </div>
     </section>

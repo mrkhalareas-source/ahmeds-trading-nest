@@ -9,7 +9,7 @@ export function WhatsAppFallbackNote({
 }) {
   return (
     <p
-      className={`text-center text-xs leading-relaxed text-muted-foreground/80 ${className}`}
+      className={`text-center text-[11px] leading-relaxed text-muted-foreground/80 ${className}`}
     >
       If WhatsApp is not responding,{" "}
       <a

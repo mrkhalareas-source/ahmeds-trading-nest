@@ -214,13 +214,16 @@ export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyRe
                   <span className="hidden sm:inline">JOIN TELEGRAM: @tradewithahmedofficial</span>
                 </a>
               </Button>
-              <Button asChild variant="goldOutline" size="xl">
-                <a href={WHATSAPP_DIRECT} target="_blank" rel="noopener noreferrer">
-                  <WhatsAppIcon className="h-5 w-5" />
-                  <span className="sm:hidden">WHATSAPP</span>
-                  <span className="hidden sm:inline">WHATSAPP: {WHATSAPP_NUMBER}</span>
-                </a>
-              </Button>
+              <div className="flex flex-col">
+                <Button asChild variant="goldOutline" size="xl">
+                  <a href={WHATSAPP_DIRECT} target="_blank" rel="noopener noreferrer">
+                    <WhatsAppIcon className="h-5 w-5" />
+                    <span className="sm:hidden">WHATSAPP</span>
+                    <span className="hidden sm:inline">WHATSAPP: {WHATSAPP_NUMBER}</span>
+                  </a>
+                </Button>
+                <WhatsAppFallbackNote className="mt-2" />
+              </div>
             </div>
           </div>
         </div>
