@@ -9,14 +9,14 @@ export function WhatsAppFallbackNote({
 }) {
   return (
     <p
-      className={`text-center text-[11px] leading-relaxed text-muted-foreground/80 ${className}`}
+      className={`text-center text-[13px] font-semibold leading-snug text-foreground sm:text-sm ${className}`}
     >
       If WhatsApp is not responding,{" "}
       <a
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="font-medium underline decoration-primary/40 underline-offset-2 transition-colors hover:text-foreground hover:decoration-primary"
+        className="font-bold text-primary underline decoration-primary/60 underline-offset-4 transition-colors hover:text-foreground hover:decoration-primary"
       >
         contact on Telegram
       </a>
