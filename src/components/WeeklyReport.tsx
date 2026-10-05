@@ -1,6 +1,7 @@
 import { CalendarDays, CheckCircle2, Send, ShieldCheck, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
+import { WhatsAppFallbackNote } from "@/components/WhatsAppFallbackNote";
 
 const TELEGRAM_MAIN = "https://t.me/tradewithahmedofficial";
 const WHATSAPP_DIRECT = "https://wa.me/923335359534";

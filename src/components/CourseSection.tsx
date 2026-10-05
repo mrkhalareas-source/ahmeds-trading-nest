@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
+import { WhatsAppFallbackNote } from "@/components/WhatsAppFallbackNote";
 
 const TELEGRAM_ADMIN = "https://t.me/tradewithahmedofficial";
 const TELEGRAM_MENTORSHIP = "https://t.me/+GHPraAZEjz8zYjk0";
