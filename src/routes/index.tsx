@@ -580,6 +580,36 @@ function Index() {
           </div>
         </section>
 
+        {/* Challenge Video Guide */}
+        <section id="challenge-guide" className="relative overflow-hidden">
+          <div className="relative mx-auto max-w-5xl px-5 py-20">
+            <div className="mx-auto max-w-3xl text-center">
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan">
+                Step by Step
+              </span>
+              <h2 className="mt-3 text-3xl font-bold sm:text-4xl lg:text-5xl">
+                WATCH FULL DETAILS <span className="text-gradient-gold">&amp; GUIDE</span>
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                Watch the complete video to understand the challenge method, rules and how to
+                claim your $500 Live Account reward.
+              </p>
+            </div>
+
+            <div className="mt-10 overflow-hidden rounded-2xl border border-border shadow-[0_20px_50px_-30px_oklch(0_0_0/90%)]">
+              <div className="aspect-video w-full bg-background">
+                <iframe
+                  src="https://www.youtube.com/embed/wfRUHe0ZZQ8"
+                  title="Trade With Ahmed — $500 Live Account Challenge full details and guide"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="h-full w-full"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Payment Methods */}
         <section id="payment" className="relative overflow-hidden">
           <div className="grid-lines absolute inset-0 opacity-40" aria-hidden="true" />
