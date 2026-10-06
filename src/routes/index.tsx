@@ -308,6 +308,7 @@ function SectionHeading({
 
 function Index() {
   const [open, setOpen] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState("mentorship");
 
   return (
     <div className="relative min-h-screen bg-background">
