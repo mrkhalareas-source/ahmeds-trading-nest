@@ -8,6 +8,7 @@ import { CourseSection } from "@/components/CourseSection";
 import { SuccessStories } from "@/components/SuccessStories";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import { WhatsAppFallbackNote } from "@/components/WhatsAppFallbackNote";
+import { PaymentSteps, PaymentConfirmationForm } from "@/components/PaymentFlow";
 import heroChart from "@/assets/hero-chart.jpg";
 
 const TELEGRAM_MAIN = "https://t.me/tradewithahmedofficial";
@@ -594,7 +595,10 @@ function Index() {
               </p>
             </div>
 
-            <div className="mt-12 grid gap-6 md:grid-cols-2">
+            <PaymentSteps selected={selectedPackage} onSelect={setSelectedPackage} />
+
+            <h3 className="mt-12 text-center font-display text-lg font-bold">2. Pay using any method</h3>
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
               {PAYMENT_METHODS.map((method) => (
                 <article key={method.title} className="panel flex flex-col p-6">
                   <div className="flex items-center gap-3">
@@ -655,6 +659,8 @@ function Index() {
                 .
               </p>
             </div>
+
+            <PaymentConfirmationForm selected={selectedPackage} />
           </div>
         </section>
 
