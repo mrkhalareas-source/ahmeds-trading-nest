@@ -68,7 +68,7 @@ export function PaymentSteps({
 }
 
 export function PaymentConfirmationForm({ selected }: { selected: string }) {
-  const pkg = PACKAGES.find((p) => p.id === selected) ?? PACKAGES[0];
+  const pkg = PACKAGES.find((p) => p.id === selected) ?? PACKAGES[0]!;
   const [form, setForm] = useState({ full_name: "", contact: "", payment_method: "", transaction_id: "", notes: "" });
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
