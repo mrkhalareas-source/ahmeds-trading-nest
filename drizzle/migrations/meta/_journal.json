@@ -8,6 +8,13 @@
       "when": 1791012675130,
       "tag": "0000_remove_unused_public_policies",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791271754469,
+      "tag": "0001_create_payment_confirmations",
+      "breakpoints": true
     }
   ]
 }

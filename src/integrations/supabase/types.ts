@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      payment_confirmations: {
+        Row: {
+          amount: string
+          contact: string
+          created_at: string
+          full_name: string
+          id: string
+          notes: string | null
+          package: string
+          payment_method: string
+          transaction_id: string
+        }
+        Insert: {
+          amount: string
+          contact: string
+          created_at?: string
+          full_name: string
+          id?: string
+          notes?: string | null
+          package: string
+          payment_method: string
+          transaction_id: string
+        }
+        Update: {
+          amount?: string
+          contact?: string
+          created_at?: string
+          full_name?: string
+          id?: string
+          notes?: string | null
+          package?: string
+          payment_method?: string
+          transaction_id?: string
+        }
+        Relationships: []
+      }
       reviews: {
         Row: {
           created_at: string
