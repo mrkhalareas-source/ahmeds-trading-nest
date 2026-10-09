@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { TradingWatermark } from "@/components/TradingWatermark";
 import { WeeklyReport } from "@/components/WeeklyReport";
 import { CourseSection } from "@/components/CourseSection";
+import { PricingTiers } from "@/components/PricingTiers";
 import { SuccessStories } from "@/components/SuccessStories";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import { WhatsAppFallbackNote } from "@/components/WhatsAppFallbackNote";
@@ -697,6 +698,9 @@ function Index() {
 
         {/* Weekly Market Report */}
         <WeeklyReport />
+
+        {/* Basic & Advance Course Pricing */}
+        <PricingTiers />
 
         {/* Institutional Trading Course */}
         <CourseSection />
