@@ -17,8 +17,8 @@ import { WhatsAppFallbackNote } from "@/components/WhatsAppFallbackNote";
 
 const TELEGRAM_ADMIN = "https://t.me/tradewithahmedofficial";
 const TELEGRAM_MENTORSHIP = "https://t.me/+GHPraAZEjz8zYjk0";
-const WHATSAPP_DIRECT = "https://wa.me/923335359534";
-const WHATSAPP_NUMBER = "+92 333 5359534";
+const WHATSAPP_DIRECT = "https://wa.me/923269861604";
+const WHATSAPP_NUMBER = "+92 326 9861604";
 
 const COURSE_FEATURES = [
   {
