@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { submitPaymentConfirmation, confirmationSchema } from "@/lib/payments.functions";
 
 export const PACKAGES = [
+  { id: "basic-course", name: "Basic Course", price: "Rs.5000" },
   { id: "mentorship", name: "Lifetime 1 to 1 Mentorship", price: "$100" },
   { id: "challenge-standard", name: "Trading Challenge – Standard", price: "Rs.2000" },
   { id: "challenge-flexible", name: "Trading Challenge – Flexible", price: "Rs.3000" },
