@@ -7,7 +7,7 @@ const TELEGRAM_MAIN = "https://t.me/tradewithahmedofficial";
 const WHATSAPP_DIRECT = "https://wa.me/923269861604";
 const WHATSAPP_NUMBER = "+92 326 9861604";
 
-export type Trade = { pair: string; side: "BUY" | "SELL"; pips: number };
+export type Trade = { pair: string; side: "BUY" | "SELL"; pips: number; date?: string };
 
 export type WeeklyResults = {
   brand: string;
@@ -23,45 +23,45 @@ export type WeeklyResults = {
 
 const DEFAULT_RESULTS: WeeklyResults = {
   brand: "TRADE WITH AHMED - TRADEWITHAHMED.SITE",
-  dateRange: "21 - 25 SEP 2026",
+  dateRange: "05 - 09 OCT 2026",
   trades: 30,
-  wins: 23,
-  losses: 7,
-  totalProfitPips: 6790,
-  totalLossPips: 290,
+  wins: 22,
+  losses: 8,
+  totalProfitPips: 5200,
+  totalLossPips: 450,
   winningTrades: [
-    { pair: "XAUUSD", side: "BUY", pips: 350 },
-    { pair: "XAUUSD", side: "SELL", pips: 350 },
-    { pair: "XAUUSD", side: "BUY", pips: 350 },
-    { pair: "XAUUSD", side: "SELL", pips: 350 },
-    { pair: "XAUUSD", side: "BUY", pips: 350 },
-    { pair: "XAUUSD", side: "SELL", pips: 350 },
-    { pair: "XAUUSD", side: "BUY", pips: 350 },
-    { pair: "XAUUSD", side: "SELL", pips: 350 },
-    { pair: "XAUUSD", side: "BUY", pips: 350 },
-    { pair: "XAUUSD", side: "SELL", pips: 350 },
-    { pair: "XAUUSD", side: "BUY", pips: 280 },
-    { pair: "XAUUSD", side: "SELL", pips: 280 },
-    { pair: "XAUUSD", side: "BUY", pips: 280 },
-    { pair: "XAUUSD", side: "SELL", pips: 280 },
-    { pair: "XAUUSD", side: "BUY", pips: 280 },
-    { pair: "XAUUSD", side: "SELL", pips: 280 },
-    { pair: "XAUUSD", side: "BUY", pips: 280 },
-    { pair: "XAUUSD", side: "SELL", pips: 280 },
-    { pair: "XAUUSD", side: "BUY", pips: 210 },
-    { pair: "XAUUSD", side: "SELL", pips: 210 },
-    { pair: "XAUUSD", side: "BUY", pips: 210 },
-    { pair: "XAUUSD", side: "SELL", pips: 210 },
-    { pair: "XAUUSD", side: "BUY", pips: 210 },
+    { pair: "XAUUSD", side: "BUY", pips: 120, date: "05 OCT 2026" },
+    { pair: "XAUUSD", side: "SELL", pips: 110, date: "05 OCT 2026" },
+    { pair: "XAUUSD", side: "BUY", pips: 130, date: "05 OCT 2026" },
+    { pair: "XAUUSD", side: "SELL", pips: 160, date: "05 OCT 2026" },
+    { pair: "XAUUSD", side: "BUY", pips: 375, date: "05 OCT 2026" },
+    { pair: "XAUUSD", side: "SELL", pips: 400, date: "06 OCT 2026" },
+    { pair: "XAUUSD", side: "BUY", pips: 600, date: "06 OCT 2026" },
+    { pair: "XAUUSD", side: "SELL", pips: 340, date: "06 OCT 2026" },
+    { pair: "XAUUSD", side: "BUY", pips: 315, date: "06 OCT 2026" },
+    { pair: "XAUUSD", side: "SELL", pips: 250, date: "07 OCT 2026" },
+    { pair: "XAUUSD", side: "BUY", pips: 240, date: "07 OCT 2026" },
+    { pair: "XAUUSD", side: "SELL", pips: 230, date: "07 OCT 2026" },
+    { pair: "XAUUSD", side: "BUY", pips: 220, date: "07 OCT 2026" },
+    { pair: "XAUUSD", side: "SELL", pips: 210, date: "07 OCT 2026" },
+    { pair: "XAUUSD", side: "BUY", pips: 205, date: "08 OCT 2026" },
+    { pair: "XAUUSD", side: "SELL", pips: 200, date: "08 OCT 2026" },
+    { pair: "XAUUSD", side: "BUY", pips: 195, date: "08 OCT 2026" },
+    { pair: "XAUUSD", side: "SELL", pips: 190, date: "08 OCT 2026" },
+    { pair: "XAUUSD", side: "BUY", pips: 185, date: "09 OCT 2026" },
+    { pair: "XAUUSD", side: "SELL", pips: 180, date: "09 OCT 2026" },
+    { pair: "XAUUSD", side: "BUY", pips: 175, date: "09 OCT 2026" },
+    { pair: "XAUUSD", side: "SELL", pips: 170, date: "09 OCT 2026" },
   ],
   losingTrades: [
-    { pair: "XAUUSD", side: "BUY", pips: -45 },
-    { pair: "XAUUSD", side: "SELL", pips: -45 },
-    { pair: "XAUUSD", side: "BUY", pips: -45 },
-    { pair: "XAUUSD", side: "SELL", pips: -45 },
-    { pair: "XAUUSD", side: "BUY", pips: -37 },
-    { pair: "XAUUSD", side: "SELL", pips: -37 },
-    { pair: "XAUUSD", side: "BUY", pips: -36 },
+    { pair: "XAUUSD", side: "BUY", pips: -60, date: "05 OCT 2026" },
+    { pair: "XAUUSD", side: "SELL", pips: -50, date: "05 OCT 2026" },
+    { pair: "XAUUSD", side: "BUY", pips: -65, date: "06 OCT 2026" },
+    { pair: "XAUUSD", side: "SELL", pips: -55, date: "06 OCT 2026" },
+    { pair: "XAUUSD", side: "BUY", pips: -60, date: "07 OCT 2026" },
+    { pair: "XAUUSD", side: "SELL", pips: -50, date: "08 OCT 2026" },
+    { pair: "XAUUSD", side: "BUY", pips: -55, date: "08 OCT 2026" },
+    { pair: "XAUUSD", side: "SELL", pips: -55, date: "09 OCT 2026" },
   ],
 };
 
@@ -167,6 +167,7 @@ export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyRe
                   >
                     <span className="text-muted-foreground">
                       ✓ {t.pair} {t.side}
+                      {t.date && <span className="ml-2 text-[10px] opacity-70">{t.date}</span>}
                     </span>
                     <span className="font-mono font-semibold tabular-nums text-accent">{fmt(t.pips)}</span>
                   </li>
@@ -194,6 +195,7 @@ export function WeeklyReport({ results = DEFAULT_RESULTS }: { results?: WeeklyRe
                   >
                     <span className="text-muted-foreground">
                       <XCircle className="inline h-3.5 w-3.5 text-destructive" /> {t.pair} {t.side}
+                      {t.date && <span className="ml-2 text-[10px] opacity-70">{t.date}</span>}
                     </span>
                     <span className="font-mono font-semibold tabular-nums text-destructive">{fmt(t.pips)}</span>
                   </li>
