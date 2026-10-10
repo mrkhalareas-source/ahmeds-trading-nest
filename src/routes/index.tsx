@@ -99,7 +99,7 @@ const CHALLENGE_OPTIONS = [
   {
     name: "Option 1 - The Standard Challenge",
     account: "$5,000 Account",
-    fee: "Rs. 1,500",
+    fee: "Rs. 2000",
     profitTarget: "16% ($800)",
     dailyDrawdown: "2% ($100)",
     maxLoss: "8% ($400)",
@@ -109,7 +109,7 @@ const CHALLENGE_OPTIONS = [
   {
     name: "Option 2 - The Flexible Challenge",
     account: "$5,000 Account",
-    fee: "Rs. 2,500",
+    fee: "Rs. 3000",
     profitTarget: "12% ($600)",
     dailyDrawdown: "4% ($200)",
     maxLoss: "10% ($500)",
@@ -119,7 +119,7 @@ const CHALLENGE_OPTIONS = [
   {
     name: "Option 3 - The Ultra-Easy Challenge",
     account: "$5,000 Account",
-    fee: "Rs. 3,500",
+    fee: "Rs. 4000",
     profitTarget: "9% ($450)",
     dailyDrawdown: "6% ($300)",
     maxLoss: "12% ($600)",
