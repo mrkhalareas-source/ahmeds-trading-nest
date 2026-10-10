@@ -6,9 +6,9 @@ import { submitPaymentConfirmation, confirmationSchema } from "@/lib/payments.fu
 
 export const PACKAGES = [
   { id: "mentorship", name: "Lifetime 1 to 1 Mentorship", price: "$100" },
-  { id: "challenge-standard", name: "Trading Challenge – Standard", price: "Rs.1,500" },
-  { id: "challenge-flexible", name: "Trading Challenge – Flexible", price: "Rs.2,500" },
-  { id: "challenge-ultra", name: "Trading Challenge – Ultra-Easy", price: "Rs.3,500" },
+  { id: "challenge-standard", name: "Trading Challenge – Standard", price: "Rs.2000" },
+  { id: "challenge-flexible", name: "Trading Challenge – Flexible", price: "Rs.3000" },
+  { id: "challenge-ultra", name: "Trading Challenge – Ultra-Easy", price: "Rs.4000" },
 ];
 
 const METHODS = ["Bank Alfalah", "Binance Pay / ID", "Binance Wallet (TRC20)"];
