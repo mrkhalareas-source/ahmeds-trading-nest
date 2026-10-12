@@ -98,7 +98,7 @@ const SOCIALS = [
 const CHALLENGE_OPTIONS = [
   {
     name: "Option 1 - The Standard Challenge",
-    account: "$5,000 Account",
+    account: "$500 Account",
     fee: "Rs. 2000",
     profitTarget: "16% ($800)",
     dailyDrawdown: "2% ($100)",
@@ -108,22 +108,22 @@ const CHALLENGE_OPTIONS = [
   },
   {
     name: "Option 2 - The Flexible Challenge",
-    account: "$5,000 Account",
+    account: "$1000 Account",
     fee: "Rs. 3000",
     profitTarget: "12% ($600)",
     dailyDrawdown: "4% ($200)",
     maxLoss: "10% ($500)",
-    reward: "Rs. 3000 Fee Refund + $500 Live Account Challenge",
+    reward: "Rs. 3000 Fee Refund + $1000 Live Account Challenge",
     cta: "Join Option 2",
   },
   {
     name: "Option 3 - The Ultra-Easy Challenge",
-    account: "$5,000 Account",
+    account: "$1500 Account",
     fee: "Rs. 4000",
     profitTarget: "9% ($450)",
     dailyDrawdown: "6% ($300)",
     maxLoss: "12% ($600)",
-    reward: "Rs. 4000 Fee Refund + $500 Live Account Challenge",
+    reward: "Rs. 4000 Fee Refund + $1500 Live Account Challenge",
     cta: "Join Option 3",
   },
 ];
@@ -469,7 +469,7 @@ function Index() {
                 OFFICIAL <span className="text-gradient-gold">TRADING CHALLENGE</span>
               </h2>
               <p className="mt-3 text-lg font-semibold text-primary sm:text-xl">
-                $500 LIVE ACCOUNT CHALLENGE
+                $5000 LIVE ACCOUNT CHALLENGE
               </p>
               <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
                 Designed like a Funded Account model to build professional trading discipline.
