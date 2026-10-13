@@ -10,7 +10,7 @@ import { SuccessStories } from "@/components/SuccessStories";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import { WhatsAppFallbackNote } from "@/components/WhatsAppFallbackNote";
 import { PaymentSteps, PaymentConfirmationForm } from "@/components/PaymentFlow";
-import heroBanner from "@/assets/hero-banner.jpg.asset.json";
+import heroBanner from "@/assets/hero-ahmed-desk.jpeg.asset.json";
 
 const TELEGRAM_MAIN = "https://t.me/tradewithahmedofficial";
 const WHATSAPP_CHANNEL = "https://www.whatsapp.com/channel/0029VbAzGiwATRSpsC9ZL90F";
