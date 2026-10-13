@@ -90,7 +90,7 @@ const COMMUNITIES = [
 const SOCIALS = [
   { name: "YouTube", icon: Youtube, href: "https://www.youtube.com/@tradewithahmed.official" },
   { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/tradewithahmed.official" },
-  { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/tradewithahmedofficial" },
+  { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/tradewithahmedofficial2/" },
   { name: "TikTok", icon: Music2, href: "https://www.tiktok.com/@tradewithahmed.official" },
   { name: "All Links Hub", icon: Link2, href: "https://linktr.ee/tradewithahmed.official" },
 ];
