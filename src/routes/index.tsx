@@ -451,7 +451,10 @@ function Index() {
                 width={1376}
                 height={768}
                 alt="Professional trader at a desk with gold bars and XAUUSD trading charts"
-                className="w-full rounded-lg object-cover"
+                loading="eager"
+                decoding="async"
+                className="block h-auto w-full rounded-lg object-cover"
+                style={{ width: "100%", height: "auto", objectFit: "cover" }}
               />
             </div>
           </div>
