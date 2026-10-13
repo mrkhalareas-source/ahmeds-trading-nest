@@ -10,7 +10,7 @@ import { SuccessStories } from "@/components/SuccessStories";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import { WhatsAppFallbackNote } from "@/components/WhatsAppFallbackNote";
 import { PaymentSteps, PaymentConfirmationForm } from "@/components/PaymentFlow";
-import heroChart from "@/assets/hero-chart.jpg";
+import heroBanner from "@/assets/hero-banner.jpg.asset.json";
 
 const TELEGRAM_MAIN = "https://t.me/tradewithahmedofficial";
 const WHATSAPP_CHANNEL = "https://www.whatsapp.com/channel/0029VbAzGiwATRSpsC9ZL90F";
@@ -447,11 +447,11 @@ function Index() {
 
             <div className="panel overflow-hidden p-2">
               <img
-                src={heroChart}
-                width={1280}
-                height={896}
-                alt="XAUUSD dark trading chart showing liquidity pools, order blocks and fair value gaps"
-                className="w-full rounded-lg"
+                src={heroBanner.url}
+                width={1376}
+                height={768}
+                alt="Professional trader at a desk with gold bars and XAUUSD trading charts"
+                className="w-full rounded-lg object-cover"
               />
             </div>
           </div>
