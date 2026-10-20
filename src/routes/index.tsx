@@ -10,7 +10,6 @@ import { SuccessStories } from "@/components/SuccessStories";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import { WhatsAppFallbackNote } from "@/components/WhatsAppFallbackNote";
 import { PaymentSteps, PaymentConfirmationForm } from "@/components/PaymentFlow";
-import heroBanner from "@/assets/hero-trader-desk.jpeg.asset.json";
 
 const TELEGRAM_MAIN = "https://t.me/tradewithahmedofficial";
 const WHATSAPP_CHANNEL = "https://www.whatsapp.com/channel/0029VbAzGiwATRSpsC9ZL90F";
@@ -446,16 +445,17 @@ function Index() {
             </div>
 
             <div className="panel overflow-hidden p-2">
-              <img
-                src={heroBanner.url}
-                width={1376}
-                height={768}
-                alt="Professional trader at a desk with gold bars and XAUUSD trading charts"
-                loading="eager"
-                decoding="async"
-                className="block h-auto w-full rounded-lg object-cover"
-                style={{ width: "100%", height: "auto", objectFit: "cover" }}
-              />
+              <div className="relative aspect-[9/16] max-h-[600px] w-full overflow-hidden rounded-lg bg-background">
+                <iframe
+                  title="Trade With Ahmed — Official Short"
+                  src="https://www.youtube.com/embed/FdaEazC7llU?autoplay=1&mute=1&loop=1&playlist=FdaEazC7llU&controls=0&modestbranding=1"
+                  className="absolute left-1/2 top-1/2 aspect-[9/16] w-full -translate-x-1/2 -translate-y-1/2 border-0"
+                  allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  loading="eager"
+                  allowFullScreen
+                />
+              </div>
             </div>
           </div>
         </section>
