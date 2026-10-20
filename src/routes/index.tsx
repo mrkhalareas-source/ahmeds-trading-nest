@@ -448,9 +448,9 @@ function Index() {
               <div className="relative aspect-[9/16] max-h-[600px] w-full overflow-hidden rounded-lg bg-background">
                 <iframe
                   title="Trade With Ahmed — Official Short"
-                  src="https://www.youtube.com/embed/FdaEazC7llU?autoplay=1&mute=1&loop=1&playlist=FdaEazC7llU&controls=0&modestbranding=1"
+                  src="https://www.youtube.com/embed/FdaEazC7llU?autoplay=1&mute=0&controls=1&modestbranding=1"
                   className="absolute left-1/2 top-1/2 aspect-[9/16] w-full -translate-x-1/2 -translate-y-1/2 border-0"
-                  allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
                   loading="eager"
                   allowFullScreen
