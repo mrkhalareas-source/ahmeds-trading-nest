@@ -491,11 +491,11 @@ function Index() {
               </p>
               <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
                 Designed like a Funded Account model to build professional trading discipline.
-                Choose one of the three options below:
+                Choose one of the four options below:
               </p>
             </div>
 
-            <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {CHALLENGE_OPTIONS.map((opt) => (
                 <article
                   key={opt.name}
@@ -571,7 +571,7 @@ function Index() {
               <h3 className="text-center text-xl font-bold sm:text-2xl">
                 Challenge <span className="text-gradient-gold">Rules</span>
               </h3>
-              <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+              <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {CHALLENGE_RULES.map((rule) => (
                   <article key={rule.title} className="panel p-5 text-center">
                     <span className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-accent/12 text-accent">
