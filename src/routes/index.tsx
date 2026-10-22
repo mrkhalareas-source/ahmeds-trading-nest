@@ -271,7 +271,15 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const MONTHLY_CHALLENGES = [
+const MONTHLY_CHALLENGES: {
+  name: string;
+  initial: string;
+  target: string;
+  icon: typeof Trophy;
+  description: string;
+  highlight: string;
+  profitSplit?: string;
+}[] = [
   {
     name: "Umrah Challenge",
     initial: "$300",
