@@ -8,16 +8,6 @@ const WHATSAPP_NUMBER = "+92 326 9861604";
 
 const TIERS = [
   {
-    id: "basic",
-    badge: "Beginner Friendly",
-    title: "Basic Course",
-    price: "Rs. 5,000",
-    cadence: "One-Time Payment",
-    text: "Yeh course beginners ke liye hai jo market ko shuru se seekhna chahte hain.",
-    points: ["Market basics bilkul shuru se", "Beginner-friendly step-by-step pace"],
-    featured: false,
-  },
-  {
     id: "advance",
     badge: "Advanced Level",
     title: "Advance Course",
@@ -41,12 +31,11 @@ export function PricingTiers() {
             Choose Your <span className="text-gradient-gold">Course</span>
           </h2>
           <p className="mt-3 text-muted-foreground">
-            Do tiers — beginners ke liye Basic Course, aur advanced institutional trading ke liye
-            Advance Course.
+            Advanced institutional trading mentorship ke liye hamari primary offer — Advance Course.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
+        <div className="mt-12 mx-auto grid max-w-xl gap-6">
           {TIERS.map((t) => (
             <article
               key={t.id}

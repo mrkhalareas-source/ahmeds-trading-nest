@@ -5,11 +5,14 @@ import { Button } from "@/components/ui/button";
 import { submitPaymentConfirmation, confirmationSchema } from "@/lib/payments.functions";
 
 export const PACKAGES = [
-  { id: "basic-course", name: "Basic Course", price: "Rs.5000" },
+  { id: "premium-1m", name: "Premium Group – 1 Month", price: "Rs. 3,000" },
+  { id: "premium-3m", name: "Premium Group – 3 Months", price: "Rs. 7,000" },
+  { id: "premium-6m", name: "Premium Group – 6 Months", price: "Rs. 12,000" },
   { id: "mentorship", name: "Lifetime 1 to 1 Mentorship", price: "$100" },
   { id: "challenge-standard", name: "Trading Challenge – Standard", price: "Rs.2000" },
   { id: "challenge-flexible", name: "Trading Challenge – Flexible", price: "Rs.3000" },
   { id: "challenge-ultra", name: "Trading Challenge – Ultra-Easy", price: "Rs.4000" },
+  { id: "challenge-ultimate", name: "Trading Challenge – Ultimate", price: "Rs. 5000" },
 ];
 
 const METHODS = ["Bank Alfalah", "Binance Pay / ID", "Binance Wallet (TRC20)"];
