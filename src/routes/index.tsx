@@ -19,7 +19,7 @@ const WHATSAPP_NUMBER = "+92 326 9861604";
 const NAV = [
   { label: "Home", href: "#home" },
   { label: "Mentorship", href: "#course" },
-  { label: "Strategy", href: "#weekly-report" },
+  { label: "Challenges", href: "#weekly-report" },
   { label: "Brokers", href: "#brokers" },
   { label: "Communities", href: "#communities" },
   { label: "Reviews", href: "#reviews" },
