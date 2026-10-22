@@ -592,7 +592,7 @@ function Index() {
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   <span className="font-semibold text-foreground">Note:</span> You must pass the
                   specific option selected. Option changes are not allowed once registered. Pass
-                  the challenge, get 100% fee refunded + $500 Live Account reward!
+                  the challenge, get 100% fee refunded +  Live Account reward!
                 </p>
               </div>
             </div>
