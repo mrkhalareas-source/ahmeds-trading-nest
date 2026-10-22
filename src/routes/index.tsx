@@ -141,22 +141,22 @@ const CHALLENGE_RULES = [
   {
     icon: Wallet,
     title: "Account Setup",
-    text: "Create $5,000 Demo Account on Doo Prime, Vantage, or XM under our Admin links.",
+    text: "Create $5,000 Demo Account on Vantage,Doo Prime, Exness or XM under our Admin links.",
   },
   {
     icon: Clock,
     title: "Minimum Trade Time",
-    text: "Trades must stay open for at least 5 MINUTES (Scalping strictly disallowed).",
+    text: "Trades must stay open for at least 3 MINUTES (Scalping strictly disallowed).",
   },
   {
     icon: ShieldCheck,
     title: "Trade Management",
-    text: "No multi-positions allowed. Strictly 1 trade open at a time.",
+    text: "No multi-positions allowed. Strictly 1 trade open at a time on single pair. Other pairs allowed.",
   },
   {
     icon: Scale,
     title: "Lot Management",
-    text: "Lot size fixed at start must remain consistent.",
+    text: "Lot size fixed at start must remain consistent. Only .o2 lot can be add or less.",
   },
   {
     icon: Zap,
