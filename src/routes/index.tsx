@@ -103,6 +103,7 @@ const CHALLENGE_OPTIONS = [
     dailyDrawdown: "2% ($100)",
     maxLoss: "8% ($400)",
     reward: "Rs. 2000 Fee Refund + $500 Live Account Challenge",
+    profitSplit: "65%",
     cta: "Join Option 1",
   },
   {
@@ -113,6 +114,7 @@ const CHALLENGE_OPTIONS = [
     dailyDrawdown: "4% ($200)",
     maxLoss: "10% ($500)",
     reward: "Rs. 3000 Fee Refund + $1000 Live Account Challenge",
+    profitSplit: "65%",
     cta: "Join Option 2",
   },
   {
@@ -123,6 +125,7 @@ const CHALLENGE_OPTIONS = [
     dailyDrawdown: "6% ($300)",
     maxLoss: "12% ($600)",
     reward: "Rs. 4000 Fee Refund + $1500 Live Account Challenge",
+    profitSplit: "65%",
     cta: "Join Option 3",
   },
   {
@@ -133,6 +136,7 @@ const CHALLENGE_OPTIONS = [
     dailyDrawdown: "7% ($350)",
     maxLoss: "13% ($650)",
     reward: "Rs. 5000 Fee Refund + $2000 Live Account Challenge",
+    profitSplit: "65%",
     cta: "Join Option 4",
   },
 ];
