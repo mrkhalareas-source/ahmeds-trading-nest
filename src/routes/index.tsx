@@ -555,6 +555,10 @@ function Index() {
                       </span>
                     </li>
                   </ul>
+                  <div className="mt-3 flex items-center gap-2 text-primary font-semibold">
+                    <span>💰</span>
+                    <span>Profit Split: {opt.profitSplit}</span>
+                  </div>
                   <div className="mt-6 grid gap-2">
                     <Button asChild variant="cta" className="w-full">
                       <a
