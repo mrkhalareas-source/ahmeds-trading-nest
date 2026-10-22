@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { CircleAlert as AlertCircle, ArrowUpRight, ChartBar as BarChart3, Bitcoin, Check, CircleCheck as CheckCircle, Clock, Copy, Facebook, Instagram, Landmark, Link2, Menu, Music2, Scale, Send, ShieldCheck, Target, TrendingDown, Trophy, Wallet, Youtube, Zap } from "lucide-react";
+import { CircleAlert as AlertCircle, ArrowUpRight, ChartBar as BarChart3, Bitcoin, Check, CircleCheck as CheckCircle, Clock, Copy, Facebook, Gauge, Instagram, Landmark, Link2, Menu, Music2, Scale, Send, ShieldCheck, Target, TrendingDown, Trophy, Wallet, Youtube, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TradingWatermark } from "@/components/TradingWatermark";
 import { WeeklyReport } from "@/components/WeeklyReport";
@@ -125,6 +125,16 @@ const CHALLENGE_OPTIONS = [
     reward: "Rs. 4000 Fee Refund + $1500 Live Account Challenge",
     cta: "Join Option 3",
   },
+  {
+    name: "Option 4 - The Ultimate Challenge",
+    account: "$4,000 Account",
+    fee: "Rs. 5000",
+    profitTarget: "7% ($350)",
+    dailyDrawdown: "7% ($350)",
+    maxLoss: "13% ($650)",
+    reward: "Rs. 5000 Fee Refund + $2000 Live Account Challenge",
+    cta: "Join Option 4",
+  },
 ];
 
 const CHALLENGE_RULES = [
@@ -152,6 +162,11 @@ const CHALLENGE_RULES = [
     icon: Zap,
     title: "News Trading",
     text: "News trading is ALLOWED.",
+  },
+  {
+    icon: Gauge,
+    title: "Leverage Policy",
+    text: "Maximum Permissible Leverage: 1:500. Account leverage must not exceed 1:500 under any circumstances.",
   },
 ];
 
