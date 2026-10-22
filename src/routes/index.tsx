@@ -103,6 +103,7 @@ const CHALLENGE_OPTIONS = [
     dailyDrawdown: "2% ($100)",
     maxLoss: "8% ($400)",
     reward: "Rs. 2000 Fee Refund + $500 Live Account Challenge",
+    profitSplit: "65%",
     cta: "Join Option 1",
   },
   {
@@ -113,6 +114,7 @@ const CHALLENGE_OPTIONS = [
     dailyDrawdown: "4% ($200)",
     maxLoss: "10% ($500)",
     reward: "Rs. 3000 Fee Refund + $1000 Live Account Challenge",
+    profitSplit: "65%",
     cta: "Join Option 2",
   },
   {
@@ -123,6 +125,7 @@ const CHALLENGE_OPTIONS = [
     dailyDrawdown: "6% ($300)",
     maxLoss: "12% ($600)",
     reward: "Rs. 4000 Fee Refund + $1500 Live Account Challenge",
+    profitSplit: "65%",
     cta: "Join Option 3",
   },
   {
@@ -133,6 +136,7 @@ const CHALLENGE_OPTIONS = [
     dailyDrawdown: "7% ($350)",
     maxLoss: "13% ($650)",
     reward: "Rs. 5000 Fee Refund + $2000 Live Account Challenge",
+    profitSplit: "65%",
     cta: "Join Option 4",
   },
 ];
@@ -306,7 +310,6 @@ const MONTHLY_CHALLENGES: {
     description:
       "Advanced risk-to-reward account expansion challenge tracking weekly session outlooks and precision XAUUSD setups.",
     highlight: "Advanced Level",
-    profitSplit: "65%",
   },
 ];
 
@@ -552,6 +555,10 @@ function Index() {
                       </span>
                     </li>
                   </ul>
+                  <div className="mt-3 flex items-center gap-2 text-primary font-semibold">
+                    <span>💰</span>
+                    <span>Profit Split: {opt.profitSplit}</span>
+                  </div>
                   <div className="mt-6 grid gap-2">
                     <Button asChild variant="cta" className="w-full">
                       <a
@@ -780,13 +787,6 @@ function Index() {
                   <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
                     {c.description}
                   </p>
-
-                  {c.profitSplit ? (
-                    <div className="mt-3 flex items-center gap-2 text-primary font-semibold">
-                      <span>💰</span>
-                      <span>Profit Split: {c.profitSplit}</span>
-                    </div>
-                  ) : null}
 
                   <div className="mt-6 grid gap-2">
                     <Button asChild variant="cta" className="w-full">
