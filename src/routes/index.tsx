@@ -306,7 +306,6 @@ const MONTHLY_CHALLENGES: {
     description:
       "Advanced risk-to-reward account expansion challenge tracking weekly session outlooks and precision XAUUSD setups.",
     highlight: "Advanced Level",
-    profitSplit: "65%",
   },
 ];
 
