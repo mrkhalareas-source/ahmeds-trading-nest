@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { CircleAlert as AlertCircle, ArrowUpRight, ChartBar as BarChart3, Bitcoin, Check, CircleCheck as CheckCircle, Clock, Copy, Facebook, Instagram, Landmark, Link2, Menu, Music2, Scale, Send, ShieldCheck, Target, TrendingDown, Trophy, Wallet, Youtube, Zap } from "lucide-react";
+import { CircleAlert as AlertCircle, ArrowUpRight, ChartBar as BarChart3, Bitcoin, Check, CircleCheck as CheckCircle, Clock, Copy, Facebook, Gauge, Instagram, Landmark, Link2, Menu, Music2, Scale, Send, ShieldCheck, Target, TrendingDown, Trophy, Wallet, Youtube, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TradingWatermark } from "@/components/TradingWatermark";
 import { WeeklyReport } from "@/components/WeeklyReport";
@@ -125,6 +125,16 @@ const CHALLENGE_OPTIONS = [
     reward: "Rs. 4000 Fee Refund + $1500 Live Account Challenge",
     cta: "Join Option 3",
   },
+  {
+    name: "Option 4 - The Ultimate Challenge",
+    account: "$4,000 Account",
+    fee: "Rs. 5000",
+    profitTarget: "7% ($350)",
+    dailyDrawdown: "7% ($350)",
+    maxLoss: "13% ($650)",
+    reward: "Rs. 5000 Fee Refund + $2000 Live Account Challenge",
+    cta: "Join Option 4",
+  },
 ];
 
 const CHALLENGE_RULES = [
@@ -152,6 +162,11 @@ const CHALLENGE_RULES = [
     icon: Zap,
     title: "News Trading",
     text: "News trading is ALLOWED.",
+  },
+  {
+    icon: Gauge,
+    title: "Leverage Policy",
+    text: "Maximum Permissible Leverage: 1:500. Account leverage must not exceed 1:500 under any circumstances.",
   },
 ];
 
@@ -476,11 +491,11 @@ function Index() {
               </p>
               <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
                 Designed like a Funded Account model to build professional trading discipline.
-                Choose one of the three options below:
+                Choose one of the four options below:
               </p>
             </div>
 
-            <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {CHALLENGE_OPTIONS.map((opt) => (
                 <article
                   key={opt.name}
@@ -556,7 +571,7 @@ function Index() {
               <h3 className="text-center text-xl font-bold sm:text-2xl">
                 Challenge <span className="text-gradient-gold">Rules</span>
               </h3>
-              <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+              <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {CHALLENGE_RULES.map((rule) => (
                   <article key={rule.title} className="panel p-5 text-center">
                     <span className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-accent/12 text-accent">
