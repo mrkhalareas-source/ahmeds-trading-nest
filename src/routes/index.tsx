@@ -634,7 +634,7 @@ function Index() {
             <div className="mt-10 overflow-hidden rounded-2xl border border-border shadow-[0_20px_50px_-30px_oklch(0_0_0/90%)]">
               <div className="aspect-video w-full bg-background">
                 <iframe
-                  src="https://www.youtube.com/embed/wfRUHe0ZZQ8"
+                  src="https://www.youtube.com/embed/ETLscB_2ANs"
                   title="Trade With Ahmed — $500 Live Account Challenge full details and guide"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
