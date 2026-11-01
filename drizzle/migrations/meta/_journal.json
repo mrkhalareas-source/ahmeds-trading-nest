@@ -15,6 +15,13 @@
       "when": 1791271754469,
       "tag": "0001_create_payment_confirmations",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793520074740,
+      "tag": "0002_create_chat_widget_tables",
+      "breakpoints": true
     }
   ]
 }
