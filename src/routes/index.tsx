@@ -130,7 +130,7 @@ const CHALLENGE_OPTIONS = [
   },
   {
     name: "Option 4 - The Ultimate Challenge",
-    account: "$4,000 Account",
+    account: "$2,000 Account",
     fee: "Rs. 5000",
     profitTarget: "7% ($350)",
     dailyDrawdown: "7% ($350)",
