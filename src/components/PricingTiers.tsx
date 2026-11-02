@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import { WhatsAppFallbackNote } from "@/components/WhatsAppFallbackNote";
 
-const WHATSAPP_DIRECT = "https://wa.me/923269861604";
-const WHATSAPP_NUMBER = "+92 326 9861604";
+const WHATSAPP_DIRECT = "https://wa.me/923335359534";
+const WHATSAPP_NUMBER = "+92 333 5359534";
 
 const TIERS = [
   {
