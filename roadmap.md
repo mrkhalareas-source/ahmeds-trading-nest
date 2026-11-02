@@ -6,3 +6,5 @@
 - [x] Fix typecheck errors in __root.tsx errorComponent and index.tsx error page
 - [x] Add "Watch Full Details & Guide" YouTube video section below the $500 Live Account Challenge section
 - [x] Replace WhatsApp number everywhere: +92 333 5359534 → +92 326 9861604 (display text and wa.me links)
+- [ ] Add live AI chat widget (one conversation, saved in database)
+- [ ] Replace WhatsApp number everywhere: +92 326 9861604 -> +92 333 5359534 (display text and wa.me links)
