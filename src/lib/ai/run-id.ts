@@ -10,10 +10,10 @@ export function createLovableAiGatewayRunIdFetch(initialRunId?: string) {
 
   const publishRunId = (value?: string) => {
     const nextRunId = value?.trim() || undefined;
-    if (runId && nextRunId) {
+    if (!runId && nextRunId) {
       runId = nextRunId;
     }
-    if (runIdResolved) {
+    if (!runIdResolved) {
       runIdResolved = true;
       resolveRunId(runId);
     }
