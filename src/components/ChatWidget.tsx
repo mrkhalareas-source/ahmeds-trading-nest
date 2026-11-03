@@ -152,19 +152,27 @@ function ChatPanel({
       {/* Transcript */}
       <Conversation className="flex-1 bg-transparent">
         <ConversationContent className="gap-5 px-4 py-4">
-          {messages.map((message) => (
-            <Message key={message.id} from={message.role}>
-              <MessageContent
-                className={
-                  message.role === "user"
-                    ? "group-[.is-user]:rounded-xl group-[.is-user]:bg-primary group-[.is-user]:px-4 group-[.is-user]:py-2.5 group-[.is-user]:font-medium group-[.is-user]:text-[#0B0E14]"
-                    : ""
-                }
-              >
-                <MessageResponse className="text-sm leading-relaxed [&_a]:text-primary [&_a]:underline [&_code]:text-accent" />
-              </MessageContent>
-            </Message>
-          ))}
+          {messages.map((message) => {
+            const text = message.parts
+              .filter((part) => part.type === "text" && typeof part.text === "string")
+              .map((part) => part.text)
+              .join("");
+            return (
+              <Message key={message.id} from={message.role}>
+                <MessageContent
+                  className={
+                    message.role === "user"
+                      ? "group-[.is-user]:rounded-xl group-[.is-user]:bg-primary group-[.is-user]:px-4 group-[.is-user]:py-2.5 group-[.is-user]:font-medium group-[.is-user]:text-[#0B0E14]"
+                      : ""
+                  }
+                >
+                  <MessageResponse className="text-sm leading-relaxed [&_a]:text-primary [&_a]:underline [&_code]:text-accent">
+                    {text}
+                  </MessageResponse>
+                </MessageContent>
+              </Message>
+            );
+          })}
 
           {status === "submitted" && (
             <Message from="assistant">
