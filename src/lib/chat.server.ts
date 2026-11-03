@@ -239,17 +239,22 @@ export async function handleChatPost(request: Request): Promise<Response> {
     },
   });
 
+  // Only persist messages that are genuinely new — the stream result includes
+  // the original history too, and re-saving it would duplicate old turns.
+  const originalIds = new Set(messages.map((message) => message.id));
+
   const response = result.toUIMessageStreamResponse({
     originalMessages: messages,
     sendReasoning: true,
     onFinish: async ({ messages: newMessages }) => {
       try {
         for (const message of newMessages) {
+          if (originalIds.has(message.id)) continue;
           const text = messageText(message);
           if (!text) continue;
           const { error: insertError } = await admin
             .from("chat_messages")
-            .insert({ session_id: conversationId, role: "assistant", content: text });
+            .insert({ session_id: conversationId, role: message.role, content: text });
           if (insertError) throw insertError;
         }
         await admin
