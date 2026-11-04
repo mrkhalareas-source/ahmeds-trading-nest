@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
-import { MessageCircleMore, Send, X } from "lucide-react";
+import { MessageCircleMore, RotateCcw, Send, X } from "lucide-react";
 
 import {
   Conversation,
@@ -65,6 +65,31 @@ function readIdentity(): { visitorToken: string; conversationId: string } {
   return { visitorToken, conversationId };
 }
 
+const BUTTONS_TOKEN = "[[CONTACT_BUTTONS]]";
+
+function ContactButtons() {
+  return (
+    <div className="mt-3 grid grid-cols-2 gap-2">
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-[#00C805] px-3 py-2 text-xs font-bold text-[#0B0E14] transition-transform hover:scale-[1.03]"
+      >
+        <WhatsAppIcon className="size-4" /> Chat on WhatsApp
+      </a>
+      <a
+        href={TELEGRAM_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-[#229ED9] px-3 py-2 text-xs font-bold text-white transition-transform hover:scale-[1.03]"
+      >
+        <Send className="size-4" /> Message on Telegram
+      </a>
+    </div>
+  );
+}
+
 function AgentMark({ className }: { className?: string }) {
   return (
     <span
@@ -89,11 +114,13 @@ function ChatPanel({
   visitorToken,
   conversationId,
   onClose,
+  onReset,
 }: {
   initialMessages: UIMessage[];
   visitorToken: string;
   conversationId: string;
   onClose: () => void;
+  onReset: () => void;
 }) {
   const transport = useMemo(
     () =>
@@ -141,6 +168,15 @@ function ChatPanel({
         </div>
         <button
           type="button"
+          onClick={onReset}
+          aria-label="Start a new chat"
+          title="New chat"
+          className="grid size-8 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
+        >
+          <RotateCcw className="size-4" />
+        </button>
+        <button
+          type="button"
           onClick={onClose}
           aria-label="Close chat"
           className="grid size-8 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
@@ -153,11 +189,14 @@ function ChatPanel({
       <Conversation className="flex-1 bg-transparent">
         <ConversationContent className="gap-5 px-4 py-4">
           {messages.map((message) => {
-            const text = message.parts
+            const raw = message.parts
               .map((part) =>
                 part.type === "text" && typeof part.text === "string" ? part.text : "",
               )
               .join("");
+            const showButtons = message.role === "assistant" && raw.includes(BUTTONS_TOKEN);
+            const text = raw.split(BUTTONS_TOKEN).join("").trim();
+            if (!text && !showButtons) return null;
             return (
               <Message key={message.id} from={message.role}>
                 <MessageContent
@@ -170,6 +209,7 @@ function ChatPanel({
                   <MessageResponse className="text-sm leading-relaxed [&_a]:text-primary [&_a]:underline [&_code]:text-accent">
                     {text}
                   </MessageResponse>
+                  {showButtons && <ContactButtons />}
                 </MessageContent>
               </Message>
             );
@@ -257,6 +297,34 @@ export function ChatWidget() {
   const [initialMessages, setInitialMessages] = useState<UIMessage[] | null>(null);
   const [loadFailed, setLoadFailed] = useState(false);
   const identityRef = useRef<{ visitorToken: string; conversationId: string } | null>(null);
+  const [chatKey, setChatKey] = useState(0);
+  const [teaser, setTeaser] = useState(false);
+
+  useEffect(() => {
+    if (window.sessionStorage.getItem("twa_chat_teaser_seen")) return;
+    const t = window.setTimeout(() => setTeaser(true), 6000);
+    return () => window.clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    if (open && teaser) {
+      setTeaser(false);
+    }
+    if (open) window.sessionStorage.setItem("twa_chat_teaser_seen", "1");
+  }, [open, teaser]);
+
+  const dismissTeaser = () => {
+    setTeaser(false);
+    window.sessionStorage.setItem("twa_chat_teaser_seen", "1");
+  };
+
+  const resetChat = () => {
+    const conversationId = crypto.randomUUID();
+    window.localStorage.setItem(CONVO_KEY, conversationId);
+    if (identityRef.current) identityRef.current = { ...identityRef.current, conversationId };
+    setInitialMessages([GREETING]);
+    setChatKey((k) => k + 1);
+  };
 
   useEffect(() => {
     if (!open || identityRef.current) return;
@@ -294,11 +362,32 @@ export function ChatWidget() {
     <>
       {open && initialMessages && identityRef.current && (
         <ChatPanel
+          key={chatKey}
+          onReset={resetChat}
           initialMessages={initialMessages}
           visitorToken={identityRef.current.visitorToken}
           conversationId={identityRef.current.conversationId}
           onClose={() => setOpen(false)}
         />
+      )}
+      {teaser && !open && (
+        <div className="fixed bottom-24 right-4 z-[110] w-[min(280px,calc(100vw-2rem))] animate-in fade-in slide-in-from-bottom-2 rounded-2xl border border-primary/40 bg-[#0B0E14]/95 p-3 pr-8 shadow-[0_10px_40px_-10px_rgba(229,184,0,0.5)] backdrop-blur-xl sm:right-6">
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="text-left text-sm font-medium text-foreground"
+          >
+            Have questions about Mentorship or Challenges? <span className="text-primary">Ask Ahmed's Assistant 👋</span>
+          </button>
+          <button
+            type="button"
+            onClick={dismissTeaser}
+            aria-label="Dismiss"
+            className="absolute right-2 top-2 grid size-6 place-items-center rounded-full text-muted-foreground hover:text-foreground"
+          >
+            <X className="size-3.5" />
+          </button>
+        </div>
       )}
       <button
         type="button"
