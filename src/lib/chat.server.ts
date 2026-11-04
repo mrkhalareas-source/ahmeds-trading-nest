@@ -1,4 +1,4 @@
-import { convertToModelMessages, streamText, type UIMessage } from "ai";
+import { convertToModelMessages, stepCountIs, streamText, tool, type UIMessage } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 import { z } from "zod";
 
@@ -32,7 +32,14 @@ Rules:
 - You are a support assistant. Do NOT give personal financial advice, price predictions, buy/sell calls, or trading signals in this chat. If asked, politely explain that trade setups and signals are shared in the Premium Group and mentorship, and point them to Telegram/WhatsApp.
 - For enrollment, payments, receipts, refund questions or anything account-specific, direct the visitor to contact Admin directly on Telegram (https://t.me/tradewithahmedofficial) or WhatsApp (https://wa.me/923335359534) - you cannot process payments.
 - Never invent prices, dates or account details. If unsure, say so and point to the contact channels.
-- Keep it friendly and professional. Never mention which AI model or system powers you; you are the Trade With Ahmed assistant.`;
+- Keep it friendly and professional. Never mention which AI model or system powers you; you are the Trade With Ahmed assistant.
+
+Lead capture:
+- When a visitor shows interest in joining (mentorship, a challenge, Premium Group) or asks how to pay/enroll, naturally and politely ask for their name and WhatsApp number or Telegram username so Admin can follow up. Ask once; don't pressure them if they decline.
+- As soon as the visitor shares a name, WhatsApp number or Telegram username, call the save_lead tool with everything known so far (use null for unknown fields), then thank them and confirm Admin will reach out.
+
+Contact buttons:
+- Whenever your reply is about enrolling, joining, paying, sending a receipt, or contacting Admin, end the reply with the exact token [[CONTACT_BUTTONS]] on its own line. The website turns it into WhatsApp and Telegram buttons. Never use it more than once per reply.`;
 
 const textPartSchema = z.object({
   type: z.string(),
@@ -247,6 +254,42 @@ export async function handleChatPost(request: Request): Promise<Response> {
     instructions: SYSTEM_PROMPT,
     messages: await convertToModelMessages(uiMessages),
     abortSignal: request.signal,
+    stopWhen: stepCountIs(3),
+    tools: {
+      save_lead: tool({
+        description: "Save the visitor's contact details so Admin can follow up.",
+        inputSchema: z.object({
+          name: z.string().max(100).nullable(),
+          whatsapp: z.string().max(40).nullable(),
+          telegram: z.string().max(60).nullable(),
+          interest: z.string().max(200).nullable().describe("What they want to join, e.g. Mentorship, Option 2 challenge"),
+        }),
+        execute: async (input) => {
+          if (!input.whatsapp && !input.telegram && !input.name) return { saved: false };
+          const { data: existing } = await admin
+            .from("chat_leads")
+            .select("name, whatsapp, telegram, interest")
+            .eq("session_id", conversationId)
+            .maybeSingle();
+          const { error: leadError } = await admin.from("chat_leads").upsert(
+            {
+              session_id: conversationId,
+              name: input.name ?? existing?.name ?? null,
+              whatsapp: input.whatsapp ?? existing?.whatsapp ?? null,
+              telegram: input.telegram ?? existing?.telegram ?? null,
+              interest: input.interest ?? existing?.interest ?? null,
+              updated_at: new Date().toISOString(),
+            },
+            { onConflict: "session_id" },
+          );
+          if (leadError) {
+            console.error("[chat] lead save failed", leadError);
+            return { saved: false };
+          }
+          return { saved: true };
+        },
+      }),
+    },
     providerOptions: {
       openai: {
         store: false,
