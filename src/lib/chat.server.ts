@@ -260,10 +260,10 @@ export async function handleChatPost(request: Request): Promise<Response> {
 
   // Only persist messages that are genuinely new — the stream result includes
   // the original history too, and re-saving it would duplicate old turns.
-  const originalIds = new Set(messages.map((message) => message.id));
+  const originalIds = new Set(uiMessages.map((message) => message.id));
 
   const response = result.toUIMessageStreamResponse({
-    originalMessages: messages,
+    originalMessages: uiMessages,
     sendReasoning: true,
     onFinish: async ({ messages: newMessages }) => {
       try {
