@@ -70,10 +70,28 @@ const chatGetSchema = z.object({
 
 function messageText(message: Pick<UIMessage, "parts">): string {
   return message.parts
-    .filter((part) => part.type === "text" && typeof part.text === "string")
-    .map((part) => part.text)
+    .map((part) =>
+      part.type === "text" && typeof part.text === "string" ? part.text : "",
+    )
     .join("")
     .trim();
+}
+
+// The wire format is validated with zod, but the AI SDK helpers expect the
+// SDK's UIMessage shape — keep only text parts and rebuild typed messages.
+function toUiMessages(
+  parsed: z.infer<typeof chatPostSchema>["messages"],
+): UIMessage[] {
+  return parsed.map((message) => ({
+    id: message.id,
+    role: message.role,
+    parts: message.parts
+      .filter(
+        (part): part is { type: "text"; text: string } =>
+          part.type === "text" && typeof part.text === "string",
+      )
+      .map((part) => ({ type: "text" as const, text: part.text })),
+  }));
 }
 
 type AdminClient = Awaited<ReturnType<typeof getAdminClient>>;
@@ -175,9 +193,10 @@ export async function handleChatPost(request: Request): Promise<Response> {
   if (!parsed.success) {
     return errorResponse("Invalid chat request.", 400);
   }
-  const { visitorToken, conversationId, messages } = parsed.data;
+  const { visitorToken, conversationId } = parsed.data;
+  const uiMessages = toUiMessages(parsed.data.messages);
 
-  const lastUserMessage = [...messages].reverse().find((m) => m.role === "user");
+  const lastUserMessage = [...uiMessages].reverse().find((m) => m.role === "user");
   const userText = lastUserMessage ? messageText(lastUserMessage) : "";
   if (!userText) {
     return errorResponse("Message is empty.", 400);
@@ -226,7 +245,7 @@ export async function handleChatPost(request: Request): Promise<Response> {
   const result = streamText({
     model: provider.responses(CHAT_MODEL),
     instructions: SYSTEM_PROMPT,
-    messages: await convertToModelMessages(messages),
+    messages: await convertToModelMessages(uiMessages),
     abortSignal: request.signal,
     providerOptions: {
       openai: {
@@ -241,10 +260,10 @@ export async function handleChatPost(request: Request): Promise<Response> {
 
   // Only persist messages that are genuinely new — the stream result includes
   // the original history too, and re-saving it would duplicate old turns.
-  const originalIds = new Set(messages.map((message) => message.id));
+  const originalIds = new Set(uiMessages.map((message) => message.id));
 
   const response = result.toUIMessageStreamResponse({
-    originalMessages: messages,
+    originalMessages: uiMessages,
     sendReasoning: true,
     onFinish: async ({ messages: newMessages }) => {
       try {
