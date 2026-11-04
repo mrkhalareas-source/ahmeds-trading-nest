@@ -70,10 +70,28 @@ const chatGetSchema = z.object({
 
 function messageText(message: Pick<UIMessage, "parts">): string {
   return message.parts
-    .filter((part) => part.type === "text" && typeof part.text === "string")
-    .map((part) => part.text)
+    .map((part) =>
+      part.type === "text" && typeof part.text === "string" ? part.text : "",
+    )
     .join("")
     .trim();
+}
+
+// The wire format is validated with zod, but the AI SDK helpers expect the
+// SDK's UIMessage shape — keep only text parts and rebuild typed messages.
+function toUiMessages(
+  parsed: z.infer<typeof chatPostSchema>["messages"],
+): UIMessage[] {
+  return parsed.map((message) => ({
+    id: message.id,
+    role: message.role,
+    parts: message.parts
+      .filter(
+        (part): part is { type: "text"; text: string } =>
+          part.type === "text" && typeof part.text === "string",
+      )
+      .map((part) => ({ type: "text" as const, text: part.text })),
+  }));
 }
 
 type AdminClient = Awaited<ReturnType<typeof getAdminClient>>;

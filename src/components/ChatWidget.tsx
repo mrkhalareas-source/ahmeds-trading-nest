@@ -154,8 +154,9 @@ function ChatPanel({
         <ConversationContent className="gap-5 px-4 py-4">
           {messages.map((message) => {
             const text = message.parts
-              .filter((part) => part.type === "text" && typeof part.text === "string")
-              .map((part) => part.text)
+              .map((part) =>
+                part.type === "text" && typeof part.text === "string" ? part.text : "",
+              )
               .join("");
             return (
               <Message key={message.id} from={message.role}>
