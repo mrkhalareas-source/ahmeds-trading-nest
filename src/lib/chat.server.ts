@@ -193,9 +193,10 @@ export async function handleChatPost(request: Request): Promise<Response> {
   if (!parsed.success) {
     return errorResponse("Invalid chat request.", 400);
   }
-  const { visitorToken, conversationId, messages } = parsed.data;
+  const { visitorToken, conversationId } = parsed.data;
+  const uiMessages = toUiMessages(parsed.data.messages);
 
-  const lastUserMessage = [...messages].reverse().find((m) => m.role === "user");
+  const lastUserMessage = [...uiMessages].reverse().find((m) => m.role === "user");
   const userText = lastUserMessage ? messageText(lastUserMessage) : "";
   if (!userText) {
     return errorResponse("Message is empty.", 400);
@@ -244,7 +245,7 @@ export async function handleChatPost(request: Request): Promise<Response> {
   const result = streamText({
     model: provider.responses(CHAT_MODEL),
     instructions: SYSTEM_PROMPT,
-    messages: await convertToModelMessages(messages),
+    messages: await convertToModelMessages(uiMessages),
     abortSignal: request.signal,
     providerOptions: {
       openai: {
