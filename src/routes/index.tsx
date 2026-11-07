@@ -29,31 +29,31 @@ const NAV = [
 const BROKERS = [
   {
     name: "VANTAGE",
-    features: ["1:500 Leverage", "Raw Spreads from 0.0 pips", "Instant Execution"],
+    features: ["Partner Code:", "Ahmed123\u00a0", "\n"],
     cta: "Trade on Vantage",
     href: "https://vigco.co/la-com-inv/Ahmed123",
   },
   {
     name: "EXNESS",
-    features: ["Unlimited Leverage", "Low Spreads", "Instant Local Withdrawals"],
+    features: ["Partner Code:", "kl0jmybzqk\u00a0", "\n"],
     cta: "Trade on Exness",
     href: "https://one.exnessonelink.com/a/kl0jmybzqk",
   },
   {
     name: "DOO PRIME",
-    features: ["Multi-Asset Coverage", "Institutional Liquidity", "Low Slippage"],
+    features: ["Partner Code:", "73751\u00a0", "\n"],
     cta: "Trade on Doo Prime",
     href: "https://my.dooprime.com/links/go/73751",
   },
   {
     name: "XM",
-    features: ["Synthetic Indices", "24/7 Trading", "Low Minimum Deposit"],
+    features: ["Partner Code:", "3M9QW", "\n"],
     cta: "Trade on Deriv",
     href: "https://affs.click/RXAwT",
   },
   {
     name: "BINANCE",
-    features: ["Global Crypto Liquidity", "Spot & Futures Trading", "Top Security"],
+    features: ["Partner Code:\u00a0", "787567422", "\n"],
     cta: "Trade on Binance",
     href: "https://accounts.binance.com/register?ref=787567422",
   },
