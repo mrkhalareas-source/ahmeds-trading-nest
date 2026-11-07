@@ -822,7 +822,17 @@ function Index() {
                 </h3>
                 <ul className="mt-4 flex-1 list-none space-y-2 text-sm text-muted-foreground">
                   {b.features.map((f) => (
-                    <li key={f} className="list-none">{f}</li>
+                    <li
+                      key={f}
+                      className={`list-none ${
+                        f.trim() === "Partner Code:" ||
+                        ["Ahmed123", "kl0jmybzqk", "73751", "3M9QW", "787567422"].includes(f.trim())
+                          ? "font-bold text-foreground"
+                          : ""
+                      }`}
+                    >
+                      {f}
+                    </li>
                   ))}
                 </ul>
                 <Button asChild variant="cta" className="mt-6 w-full">
