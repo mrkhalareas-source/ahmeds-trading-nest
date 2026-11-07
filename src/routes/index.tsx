@@ -820,12 +820,9 @@ function Index() {
                 <h3 className="font-display text-xl font-bold tracking-wide text-primary">
                   {b.name}
                 </h3>
-                <ul className="mt-4 flex-1 space-y-2 text-sm text-muted-foreground">
+                <ul className="mt-4 flex-1 list-none space-y-2 text-sm text-muted-foreground">
                   {b.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                      {f}
-                    </li>
+                    <li key={f} className="list-none">{f}</li>
                   ))}
                 </ul>
                 <Button asChild variant="cta" className="mt-6 w-full">
