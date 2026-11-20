@@ -23,7 +23,7 @@ import { Shimmer } from "@/components/ai-elements/shimmer";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 
 const TELEGRAM_URL = "https://t.me/tradewithahmedofficial";
-const WHATSAPP_URL = "https://wa.me/923335359534";
+const WHATSAPP_URL = "https://wa.me/923259180383";
 
 const VISITOR_KEY = "twa_chat_visitor";
 const CONVO_KEY = "twa_chat_conversation";
