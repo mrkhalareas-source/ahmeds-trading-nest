@@ -8,4 +8,4 @@
 - [x] Replace WhatsApp number everywhere: +92 333 5359534 → +92 326 9861604 (display text and wa.me links)
 - [x] Add live AI chat widget (one conversation, saved in database)
 - [x] Replace WhatsApp number everywhere: +92 326 9861604 -> +92 333 5359534 (display text and wa.me links)
-- [ ] Route Join Option, WhatsApp, and Telegram CTA links to the provided Vantage referral URL
+- [x] Route challenge-card join buttons (Option 1-4 + Monthly Challenges) to Vantage referral https://vantagepartners.com/en/forex?affid=Ahmed123

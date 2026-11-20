@@ -15,6 +15,7 @@ const TELEGRAM_MAIN = "https://t.me/tradewithahmedofficial";
 const WHATSAPP_CHANNEL = "https://www.whatsapp.com/channel/0029VbAzGiwATRSpsC9ZL90F";
 const WHATSAPP_DIRECT = "https://wa.me/923335359534";
 const WHATSAPP_NUMBER = "+92 333 5359534";
+const VANTAGE_REFERRAL = "https://vantagepartners.com/en/forex?affid=Ahmed123";
 
 const NAV = [
   { label: "Home", href: "#home" },
@@ -561,23 +562,10 @@ function Index() {
                   </div>
                   <div className="mt-6 grid gap-2">
                     <Button asChild variant="cta" className="w-full">
-                      <a
-                        href="https://t.me/tradingchallengeoftradewithahmed"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {opt.cta} <ArrowUpRight />
+                      <a href={VANTAGE_REFERRAL} target="_blank" rel="noopener noreferrer">
+                        Register on Vantage <ArrowUpRight />
                       </a>
                     </Button>
-                    <Button asChild variant="surface" className="w-full">
-                      <a href={WHATSAPP_DIRECT} target="_blank" rel="noopener noreferrer">
-                        <WhatsAppIcon className="h-4 w-4" /> Join via WhatsApp
-                      </a>
-                    </Button>
-                    <WhatsAppFallbackNote
-                      href="https://t.me/tradingchallengeoftradewithahmed"
-                      className="mt-1"
-                    />
                   </div>
                 </article>
               ))}
@@ -790,16 +778,10 @@ function Index() {
 
                   <div className="mt-6 grid gap-2">
                     <Button asChild variant="cta" className="w-full">
-                      <a href={TELEGRAM_MAIN} target="_blank" rel="noopener noreferrer">
-                        Join Challenge <ArrowUpRight />
+                      <a href={VANTAGE_REFERRAL} target="_blank" rel="noopener noreferrer">
+                        Join via Vantage <ArrowUpRight />
                       </a>
                     </Button>
-                    <Button asChild variant="surface" className="w-full">
-                      <a href={WHATSAPP_DIRECT} target="_blank" rel="noopener noreferrer">
-                        <WhatsAppIcon className="h-4 w-4" /> Join via WhatsApp
-                      </a>
-                    </Button>
-                    <WhatsAppFallbackNote className="mt-1" />
                   </div>
                 </article>
               );
