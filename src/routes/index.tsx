@@ -563,7 +563,7 @@ function Index() {
                   <div className="mt-6 grid gap-2">
                     <Button asChild variant="cta" className="w-full">
                       <a href={VANTAGE_REFERRAL} target="_blank" rel="noopener noreferrer">
-                        Register on Vantage <ArrowUpRight />
+                        Register <ArrowUpRight />
                       </a>
                     </Button>
                   </div>
