@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep site-wide tracking base scripts in the root route's head scripts array, adding new providers without replacing existing pixels so every page shares the same tracking setup.
