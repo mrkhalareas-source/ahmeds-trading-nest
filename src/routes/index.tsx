@@ -445,18 +445,24 @@ function Index() {
               </h1>
               <ul className="mt-6 max-w-xl space-y-3.5">
                 {[
-                  "Trading Challenges",
-                  "Mentorship Course (SMC, ICT & Price Action)",
-                  "Premium Group Access",
-                  "Verified Student Results",
+                  { label: "Trading Challenges", href: "#challenge" },
+                  { label: "Mentorship Course (SMC, ICT & Price Action)", href: "#course" },
+                  { label: "Premium Group Access", href: "#communities" },
+                  { label: "Verified Student Results", href: "#reviews" },
                 ].map((item) => (
-                  <li key={item} className="flex items-center gap-3">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-accent/40 bg-accent/10">
-                      <CheckCircle className="h-3.5 w-3.5 text-accent" />
-                    </span>
-                    <span className="text-base font-medium text-foreground/90 sm:text-lg">
-                      {item}
-                    </span>
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      className="group flex cursor-pointer items-center gap-3 transition-transform duration-200 hover:translate-x-1"
+                    >
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-accent/40 bg-accent/10 transition-colors group-hover:border-primary/50 group-hover:bg-primary/10">
+                        <CheckCircle className="h-3.5 w-3.5 text-accent transition-colors group-hover:text-primary" />
+                      </span>
+                      <span className="text-base font-medium text-foreground/90 transition-colors group-hover:text-primary sm:text-lg">
+                        {item.label}
+                      </span>
+                      <ArrowUpRight className="h-4 w-4 -translate-x-1 text-primary opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100" />
+                    </a>
                   </li>
                 ))}
               </ul>
