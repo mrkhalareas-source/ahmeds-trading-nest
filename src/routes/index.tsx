@@ -443,7 +443,7 @@ function Index() {
                 Master Institutional Trading &{" "}
                 <span className="text-gradient-gold">XAUUSD Market Structure</span>
               </h1>
-              <ul className="mt-6 max-w-xl space-y-4">
+              <ul className="mt-5 max-w-xl space-y-3">
                 {[
                   {
                     label: "Trading Challenge",
@@ -456,14 +456,24 @@ function Index() {
                     href: "#course",
                   },
                   {
-                    label: "Recommended Brokers & Payments",
-                    detail: "Vantage, Exness, Doo Prime, XM & easy payment steps",
+                    label: "Recommended Brokers",
+                    detail: "Vantage, Exness, Doo Prime & XM partner platforms",
                     href: "#brokers",
                   },
                   {
-                    label: "Premium Group & Results",
-                    detail: "VIP community, signals & verified student payouts",
+                    label: "Premium Group",
+                    detail: "Exclusive VIP community & trading signals access",
                     href: "#communities",
+                  },
+                  {
+                    label: "Payment Details",
+                    detail: "Simple step-by-step payment guide & package instructions",
+                    href: "#payment",
+                  },
+                  {
+                    label: "Student Results",
+                    detail: "Verified student payouts, feedback & real performance",
+                    href: "#reviews",
                   },
                 ].map((item) => (
                   <li key={item.label}>
