@@ -366,12 +366,7 @@ function Index() {
           </ul>
 
           <div className="flex items-center gap-2">
-            <Button asChild variant="cta" className="hidden sm:inline-flex">
-              <a href={TELEGRAM_MAIN} target="_blank" rel="noopener noreferrer">
-                <Send /> Join Telegram
-              </a>
-            </Button>
-            <Button asChild variant="channel" className="hidden lg:inline-flex">
+            <Button asChild variant="channel" className="hidden sm:inline-flex">
               <a href={WHATSAPP_CHANNEL} target="_blank" rel="noopener noreferrer">
                 <WhatsAppIcon className="h-4 w-4" /> WhatsApp Channel
               </a>
