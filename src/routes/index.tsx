@@ -451,9 +451,9 @@ function Index() {
                     <WhatsAppIcon className="h-5 w-5" /> WhatsApp {WHATSAPP_NUMBER}
                   </a>
                 </Button>
-                <Button asChild variant="surface" size="xl">
+                <Button asChild variant="channel" size="xl">
                   <a href={WHATSAPP_CHANNEL} target="_blank" rel="noopener noreferrer">
-                    WhatsApp Channel <ArrowUpRight />
+                    <WhatsAppIcon className="h-5 w-5" /> Follow WhatsApp Channel <ArrowUpRight />
                   </a>
                 </Button>
               </div>

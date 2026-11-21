@@ -47,6 +47,8 @@
   --color-surface: var(--surface);
   --color-cyan: var(--cyan);
   --color-cyan-foreground: var(--cyan-foreground);
+  --color-channel: var(--channel);
+  --color-channel-foreground: var(--channel-foreground);
   --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
 }
@@ -74,6 +76,9 @@
   /* cyan #22D3EE */
   --cyan: oklch(0.8 0.13 205);
   --cyan-foreground: oklch(0.18 0.03 220);
+  /* emerald #10B981 — WhatsApp Channel CTA */
+  --channel: oklch(0.696 0.17 162);
+  --channel-foreground: oklch(0.16 0.02 160);
   --destructive: oklch(0.62 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
   --border: oklch(1 0 0 / 10%);
@@ -97,6 +102,7 @@
     );
   --shadow-gold: 0 10px 30px -12px color-mix(in oklab, var(--primary) 55%, transparent);
   --shadow-cta: 0 10px 30px -10px color-mix(in oklab, var(--accent) 55%, transparent);
+  --shadow-channel: 0 10px 34px -10px color-mix(in oklab, var(--channel) 60%, transparent);
   --shadow-card: 0 20px 50px -30px oklch(0 0 0 / 90%);
   --shadow-performance: 0 32px 64px -20px oklch(0 0 0 / 88%);
 }

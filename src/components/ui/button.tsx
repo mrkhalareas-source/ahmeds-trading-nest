@@ -22,6 +22,8 @@ const buttonVariants = cva(
           "border border-primary/50 text-primary bg-primary/5 hover:bg-primary/15 font-medium",
         surface:
           "border border-border bg-card text-foreground hover:border-primary/50 hover:text-primary",
+        channel:
+          "bg-channel text-channel-foreground font-semibold shadow-[var(--shadow-channel)] transition-all duration-300 hover:brightness-110 hover:shadow-[0_14px_44px_-8px_color-mix(in_oklab,var(--channel)_75%,transparent)] hover:-translate-y-0.5",
       },
       size: {
         default: "h-9 px-4 py-2",
