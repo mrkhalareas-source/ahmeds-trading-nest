@@ -443,25 +443,46 @@ function Index() {
                 Master Institutional Trading &{" "}
                 <span className="text-gradient-gold">XAUUSD Market Structure</span>
               </h1>
-              <ul className="mt-6 max-w-xl space-y-3.5">
+              <ul className="mt-6 max-w-xl space-y-4">
                 {[
-                  { label: "Trading Challenges", href: "#challenge" },
-                  { label: "Mentorship Course (SMC, ICT & Price Action)", href: "#course" },
-                  { label: "Premium Group Access", href: "#communities" },
-                  { label: "Verified Student Results", href: "#reviews" },
+                  {
+                    label: "Trading Challenge",
+                    detail: "Funded account rules, $500 live reward & challenge details",
+                    href: "#challenge",
+                  },
+                  {
+                    label: "Mentorship Course",
+                    detail: "Master SMC, ICT & XAUUSD market structure step by step",
+                    href: "#course",
+                  },
+                  {
+                    label: "Recommended Brokers & Payments",
+                    detail: "Vantage, Exness, Doo Prime, XM & easy payment steps",
+                    href: "#brokers",
+                  },
+                  {
+                    label: "Premium Group & Results",
+                    detail: "VIP community, signals & verified student payouts",
+                    href: "#communities",
+                  },
                 ].map((item) => (
                   <li key={item.label}>
                     <a
                       href={item.href}
-                      className="group flex cursor-pointer items-center gap-3 transition-transform duration-200 hover:translate-x-1"
+                      className="group flex cursor-pointer items-start gap-3 transition-transform duration-200 hover:translate-x-1"
                     >
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-accent/40 bg-accent/10 transition-colors group-hover:border-primary/50 group-hover:bg-primary/10">
+                      <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-accent/40 bg-accent/10 transition-colors group-hover:border-primary/50 group-hover:bg-primary/10">
                         <CheckCircle className="h-3.5 w-3.5 text-accent transition-colors group-hover:text-primary" />
                       </span>
-                      <span className="text-base font-medium text-foreground/90 transition-colors group-hover:text-primary sm:text-lg">
-                        {item.label}
+                      <span className="min-w-0">
+                        <span className="block text-base font-semibold text-foreground/90 transition-colors group-hover:text-primary sm:text-lg">
+                          {item.label}
+                        </span>
+                        <span className="mt-0.5 block text-sm leading-snug text-muted-foreground transition-colors group-hover:text-foreground/70">
+                          {item.detail}
+                        </span>
                       </span>
-                      <ArrowUpRight className="h-4 w-4 -translate-x-1 text-primary opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100" />
+                      <ArrowUpRight className="ml-auto mt-1 h-4 w-4 shrink-0 -translate-x-1 text-primary opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100" />
                     </a>
                   </li>
                 ))}
