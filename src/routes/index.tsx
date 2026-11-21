@@ -443,10 +443,23 @@ function Index() {
                 Master Institutional Trading &{" "}
                 <span className="text-gradient-gold">XAUUSD Market Structure</span>
               </h1>
-              <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
-                Learn precision price action, Smart Money Concepts (SMC), and Inner Circle Trader
-                (ICT) strategies tailored for Gold (XAUUSD) and major Forex markets.
-              </p>
+              <ul className="mt-6 max-w-xl space-y-3.5">
+                {[
+                  "Trading Challenges",
+                  "Mentorship Course (SMC, ICT & Price Action)",
+                  "Premium Group Access",
+                  "Verified Student Results",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-accent/40 bg-accent/10">
+                      <CheckCircle className="h-3.5 w-3.5 text-accent" />
+                    </span>
+                    <span className="text-base font-medium text-foreground/90 sm:text-lg">
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild variant="cta" size="xl">
                   <a href={TELEGRAM_MAIN} target="_blank" rel="noopener noreferrer">
