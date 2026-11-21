@@ -371,6 +371,11 @@ function Index() {
                 <Send /> Join Telegram
               </a>
             </Button>
+            <Button asChild variant="channel" className="hidden lg:inline-flex">
+              <a href={WHATSAPP_CHANNEL} target="_blank" rel="noopener noreferrer">
+                <WhatsAppIcon className="h-4 w-4" /> WhatsApp Channel
+              </a>
+            </Button>
             <div className="hidden flex-col items-center gap-1 md:flex">
               <Button asChild variant="surface">
                 <a href={WHATSAPP_DIRECT} target="_blank" rel="noopener noreferrer">
@@ -408,6 +413,13 @@ function Index() {
               <Button asChild variant="cta" className="w-full">
                 <a href={TELEGRAM_MAIN} target="_blank" rel="noopener noreferrer">
                   <Send /> Join Telegram
+                </a>
+              </Button>
+            </li>
+            <li className="pt-2">
+              <Button asChild variant="channel" className="w-full">
+                <a href={WHATSAPP_CHANNEL} target="_blank" rel="noopener noreferrer">
+                  <WhatsAppIcon className="h-4 w-4" /> WhatsApp Channel
                 </a>
               </Button>
             </li>
@@ -912,9 +924,9 @@ function Index() {
               </Button>
               <WhatsAppFallbackNote />
             </div>
-            <Button asChild variant="surface" size="lg">
+            <Button asChild variant="channel" size="lg">
               <a href={WHATSAPP_CHANNEL} target="_blank" rel="noopener noreferrer">
-                WhatsApp Channel
+                <WhatsAppIcon className="h-4 w-4" /> WhatsApp Channel
               </a>
             </Button>
           </div>

@@ -48,6 +48,7 @@
   --color-cyan: var(--cyan);
   --color-cyan-foreground: var(--cyan-foreground);
   --color-channel: var(--channel);
+  --color-channel-hover: var(--channel-hover);
   --color-channel-foreground: var(--channel-foreground);
   --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
@@ -76,9 +77,10 @@
   /* cyan #22D3EE */
   --cyan: oklch(0.8 0.13 205);
   --cyan-foreground: oklch(0.18 0.03 220);
-  /* emerald #10B981 — WhatsApp Channel CTA */
-  --channel: oklch(0.696 0.17 162);
-  --channel-foreground: oklch(0.16 0.02 160);
+  /* golden-amber #F59E0B — WhatsApp Channel CTA */
+  --channel: oklch(0.769 0.164 70);
+  --channel-hover: oklch(0.828 0.169 84);
+  --channel-foreground: oklch(0.17 0.01 170);
   --destructive: oklch(0.62 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
   --border: oklch(1 0 0 / 10%);
