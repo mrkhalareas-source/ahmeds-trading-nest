@@ -12,7 +12,7 @@ import { WhatsAppFallbackNote } from "@/components/WhatsAppFallbackNote";
 import { PaymentSteps, PaymentConfirmationForm } from "@/components/PaymentFlow";
 
 const TELEGRAM_MAIN = "https://t.me/tradewithahmedofficial";
-const WHATSAPP_CHANNEL = "https://www.whatsapp.com/channel/0029VbAzGiwATRSpsC9ZL90F";
+const WHATSAPP_CHANNEL = "https://whatsapp.com/channel/0029VbAzGiwATRSpsC9ZL90F";
 const WHATSAPP_DIRECT = "https://wa.me/923259180383";
 const WHATSAPP_NUMBER = "+92 325 9180383";
 const VANTAGE_REFERRAL = "https://vigco.co/la-com-inv/Ahmed123";
