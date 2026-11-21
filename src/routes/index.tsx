@@ -447,7 +447,7 @@ function Index() {
                 {[
                   {
                     label: "Trading Challenge",
-                    detail: "Funded account rules, $500 live reward & challenge details",
+                    detail: "Funded account rules, Live reward & challenge details",
                     href: "#challenge",
                   },
                   {
