@@ -8,6 +8,18 @@ const WHATSAPP_NUMBER = "+92 325 9180383";
 
 const TIERS = [
   {
+    id: "basic",
+    badge: "Beginner Level",
+    title: "Basic Course",
+    price: "$20",
+    cadence: "One-Time Payment / Lifetime Access",
+    text: "Yeh beginners ke liye hai jo trading ki basics, market structure aur price action seekhna chahte hain.",
+    points: ["Trading basics & market structure", "Price action & risk management"],
+    waText:
+      "Assalam o Alaikum! I want to enroll in the Basic Course ($20). Please share the details.",
+    featured: false,
+  },
+  {
     id: "advance",
     badge: "Advanced Level",
     title: "Advance Course",
@@ -15,6 +27,8 @@ const TIERS = [
     cadence: "One-Time Payment / Lifetime Access",
     text: "Yeh mentorship aur advanced institutional strategies (SMC & ICT) ke liye hai.",
     points: ["1 to 1 mentorship", "Institutional strategies — SMC & ICT"],
+    waText:
+      "Assalam o Alaikum! I want to enroll in the Advance Course ($100). Please share the details.",
     featured: true,
   },
 ];
@@ -35,7 +49,7 @@ export function PricingTiers() {
           </p>
         </div>
 
-        <div className="mt-12 mx-auto grid max-w-xl gap-6">
+        <div className="mt-12 mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
           {TIERS.map((t) => (
             <article
               key={t.id}
@@ -85,7 +99,11 @@ export function PricingTiers() {
 
               <div className="mt-8 flex flex-col gap-2 pt-2">
                 <Button asChild variant={t.featured ? "gold" : "cta"} size="lg" className="w-full">
-                  <a href={WHATSAPP_DIRECT} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={`${WHATSAPP_DIRECT}?text=${encodeURIComponent(t.waText)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <WhatsAppIcon className="h-5 w-5" /> Enroll Now on WhatsApp
                   </a>
                 </Button>
